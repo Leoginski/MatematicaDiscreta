@@ -7,5 +7,9 @@ for line in lines:
         variable.append(char)
 test.close()
 print variable
-print("Insira um caracter a ser procurado:")
-userInput = input("")
+caracter = raw_input("Insira um caracter a ser procurado: ")
+m=0
+for e in variable:
+ if caracter is e:
+  m = m + 1
+print (m)
