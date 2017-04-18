@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.Elemento;
 
 /**
  *
@@ -84,18 +85,37 @@ public class main extends javax.swing.JFrame {
         File txtFileLer = new File(fileChooser.getSelectedFile().getName());
         System.out.println(txtFileLer);
 
+//        ArrayList<List> conjunto = new ArrayList<>();
         try {
             FileReader arq = new FileReader(txtFileLer);
             BufferedReader lerArq = new BufferedReader(arq);
 
             String linha = lerArq.readLine();
-            Pattern pattern = Pattern.compile("([^A-Z,={}]+)");
+            Pattern conjunto = Pattern.compile("([^A-Z,={}]+)");
+            Pattern elemento = Pattern.compile("([{}]+)");
 
             while (linha != null) {
-                System.out.printf("%s\n", linha);
-                Matcher matcher = pattern.matcher(linha);
-                if (matcher.find()) {
-                    System.out.println(matcher.group(1));
+                //                System.out.printf("%s\n", linha);
+                int count = 0;
+                char nome = linha.charAt(0);
+                Matcher conjuntoMatcher = conjunto.matcher(linha);
+                Matcher elementoMatcher = elemento.matcher(linha);
+
+                while (conjuntoMatcher.find()) {
+                    String value = conjuntoMatcher.group();
+                    System.out.print(value + "\n");
+ //                 Elemento nomess = new Elemento(value); criar elemento com nome de string (vindo de um conjunto para um array)
+               }
+
+                while (elementoMatcher.find()) {
+                    count++;
+                }
+
+                if (count == 0) {
+                    System.out.print("elemento");
+                    //Criar
+                } else {
+                    System.out.print("conjunto");
                 }
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
