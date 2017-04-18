@@ -24,14 +24,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="jlblArquivo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jlblArquivo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jbArquivo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jbElementos" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbConjuntos" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jbArquivo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jtfArquivo" min="-2" pref="177" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jtfArquivo" min="-2" pref="177" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,7 +58,20 @@
                   <Component id="jbArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="162" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jbConjuntos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbElementos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,5 +99,134 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfArquivoActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="jbConjuntos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Conjuntos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbElementos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Elementos"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jbContidoOuIgual" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbNaoContidoOuIgual" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbIntersecao" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lbContidoPropriamente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbNaoContidoPropriamente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbProdutoCartesiano" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jbPertence" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblOperacoes" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jbNaoPertence" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jbUniao" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lblOperacoes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jbPertence" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbNaoPertence" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbUniao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jbContidoOuIgual" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbNaoContidoOuIgual" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbIntersecao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbContidoPropriamente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbNaoContidoPropriamente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbProdutoCartesiano" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="jbContidoOuIgual">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x2286;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="lbNaoContidoOuIgual">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="!&#x2286;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="lbContidoPropriamente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x2282;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="lbNaoContidoPropriamente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="!&#x2282;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbUniao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x222a;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbIntersecao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x2229;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="lbProdutoCartesiano">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#xd7;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblOperacoes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Opera&#xe7;&#xf5;es:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbPertence">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x2208;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbNaoPertence">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="!&#x2208;"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
