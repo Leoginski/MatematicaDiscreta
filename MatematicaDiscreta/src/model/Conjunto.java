@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author Aluno
  */
-public class conjunto {
+public class Conjunto {
 
     ArrayList<List> conjunto = new ArrayList<>();
 
-    public conjunto() {
+    public Conjunto() {
     }
 
-    public conjunto(ArrayList<List> conjunto) {
+    public Conjunto(ArrayList<List> conjunto) {
         this.conjunto = conjunto;
     }
 

@@ -37,17 +37,27 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jlblArquivo = new javax.swing.JLabel();
+        jbArquivo = new javax.swing.JButton();
+        jtfArquivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jLabel1.setText("Arquivo:");
+        jlblArquivo.setText("Arquivo:");
 
-        jButton1.setText("Clique");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbArquivo.setText("Pesquisar...");
+        jbArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbArquivoActionPerformed(evt);
+            }
+        });
+
+        jtfArquivo.setEnabled(false);
+        jtfArquivo.setName(""); // NOI18N
+        jtfArquivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfArquivoActionPerformed(evt);
             }
         });
 
@@ -56,26 +66,30 @@ public class main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jlblArquivo)
+                .addGap(18, 18, 18)
+                .addComponent(jbArquivo)
+                .addGap(18, 18, 18)
+                .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(jlblArquivo)
+                    .addComponent(jbArquivo)
+                    .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbArquivoActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileNameExtensionFilter("Filtro .txt", "txt"));
@@ -83,7 +97,7 @@ public class main extends javax.swing.JFrame {
         fileChooser.showOpenDialog(this);
 
         File txtFileLer = new File(fileChooser.getSelectedFile().getName());
-        System.out.println(txtFileLer);
+        jtfArquivo.setText(txtFileLer.getName());
 
 //        ArrayList<List> conjunto = new ArrayList<>();
         try {
@@ -104,8 +118,8 @@ public class main extends javax.swing.JFrame {
                 while (conjuntoMatcher.find()) {
                     String value = conjuntoMatcher.group();
                     System.out.print(value + "\n");
- //                 Elemento nomess = new Elemento(value); criar elemento com nome de string (vindo de um conjunto para um array)
-               }
+                    //                 Elemento nomess = new Elemento(value); criar elemento com nome de string (vindo de um conjunto para um array)
+                }
 
                 while (elementoMatcher.find()) {
                     count++;
@@ -127,7 +141,11 @@ public class main extends javax.swing.JFrame {
         }
 
         System.out.println();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbArquivoActionPerformed
+
+    private void jtfArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfArquivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfArquivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,7 +183,8 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbArquivo;
+    private javax.swing.JLabel jlblArquivo;
+    private javax.swing.JTextField jtfArquivo;
     // End of variables declaration//GEN-END:variables
 }
