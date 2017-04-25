@@ -6,7 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -14,20 +13,20 @@ import java.util.List;
  */
 public class Conjunto {
 
-    ArrayList<List> conjunto = new ArrayList<>();
+    ArrayList<Elemento> conjunto = new ArrayList<>();
 
     public Conjunto() {
     }
 
-    public Conjunto(ArrayList<List> conjunto) {
+    public Conjunto(ArrayList<Elemento> conjunto) {
         this.conjunto = conjunto;
     }
 
-    public ArrayList<List> getConjunto() {
+    public ArrayList<Elemento> getConjunto() {
         return conjunto;
     }
 
-    public void setConjunto(ArrayList<List> conjunto) {
+    public void setConjunto(ArrayList<Elemento> conjunto) {
         this.conjunto = conjunto;
     }
 

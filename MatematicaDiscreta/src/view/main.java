@@ -9,10 +9,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.Conjunto;
 import model.Elemento;
 
 /**
@@ -204,41 +206,46 @@ public class main extends javax.swing.JFrame {
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.showOpenDialog(this);
 
-        File txtFileLer = new File(fileChooser.getSelectedFile().getName());
+        File txtFileLer = new File(fileChooser.getSelectedFile().getAbsolutePath());
         jtfArquivo.setText(txtFileLer.getName());
 
-//        ArrayList<List> conjunto = new ArrayList<>();
+        ArrayList<Conjunto> conjuntos = new ArrayList<>();
+        ArrayList<Elemento> elementos = new ArrayList<>();
+
         try {
             FileReader arq = new FileReader(txtFileLer);
             BufferedReader lerArq = new BufferedReader(arq);
 
             String linha = lerArq.readLine();
-            Pattern conjunto = Pattern.compile("([^A-Z,={}]+)");
-            Pattern elemento = Pattern.compile("([{}]+)");
+
+            Pattern acharConjunto = Pattern.compile("[A-Z]");
+            Pattern acharElemento = Pattern.compile("([a-z])");
+            Pattern numero = Pattern.compile("\\d");
 
             while (linha != null) {
-                //                System.out.printf("%s\n", linha);
-                int count = 0;
-                char nome = linha.charAt(0);
-                Matcher conjuntoMatcher = conjunto.matcher(linha);
-                Matcher elementoMatcher = elemento.matcher(linha);
+                Matcher acharConjuntoMatcher = acharConjunto.matcher(linha);
+                Matcher acharElementoMatcher = acharElemento.matcher(linha);
+                Matcher numeroMatcher = numero.matcher(linha);
 
-                while (conjuntoMatcher.find()) {
-                    String value = conjuntoMatcher.group();
-                    System.out.print(value + "\n");
-                    //                 Elemento nomess = new Elemento(value); criar elemento com nome de string (vindo de um conjunto para um array)
+                System.out.print("\n");
+                if (acharConjuntoMatcher.find()) {
+                    System.out.print("conjunto -> ");
+                    //lnha de conjunto
+                    while (numeroMatcher.find()) {
+                        String value = numeroMatcher.group();
+                        System.out.print(value);
+                    }
                 }
 
-                while (elementoMatcher.find()) {
-                    count++;
+                if (acharElementoMatcher.find()) {
+                    System.out.print("elemento -> ");
+                    //linha de elemento
+                    while (numeroMatcher.find()) {
+                        String value = numeroMatcher.group();
+                        System.out.print(value);
+                    }
                 }
 
-                if (count == 0) {
-                    System.out.print("elemento");
-                    //Criar
-                } else {
-                    System.out.print("conjunto");
-                }
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
 
