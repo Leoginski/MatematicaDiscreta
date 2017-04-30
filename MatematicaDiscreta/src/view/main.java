@@ -89,6 +89,11 @@ public class main extends javax.swing.JFrame {
         lbNaoContidoPropriamente.setText("!⊂");
 
         jbUniao.setText("∪");
+        jbUniao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbUniaoActionPerformed(evt);
+            }
+        });
 
         jbIntersecao.setText("∩");
 
@@ -168,7 +173,6 @@ public class main extends javax.swing.JFrame {
                             .addComponent(jbElementos)
                             .addComponent(jbConjuntos))
                         .addGap(46, 46, 46)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,40 +213,61 @@ public class main extends javax.swing.JFrame {
         File txtFileLer = new File(fileChooser.getSelectedFile().getAbsolutePath());
         jtfArquivo.setText(txtFileLer.getName());
 
+        // Listas para receber os objetos
         ArrayList<Conjunto> conjuntos = new ArrayList<>();
         ArrayList<Elemento> elementos = new ArrayList<>();
 
+        // Leitura do arquivo
         try {
             FileReader arq = new FileReader(txtFileLer);
             BufferedReader lerArq = new BufferedReader(arq);
-
+            // Pegando linhas do arquivo
             String linha = lerArq.readLine();
 
+            //Expressoes regulares
             Pattern acharConjunto = Pattern.compile("[A-Z]");
             Pattern acharElemento = Pattern.compile("([a-z])");
             Pattern numero = Pattern.compile("\\d");
 
+            // Varrendo as linhas
             while (linha != null) {
+                // Aplicando regex
                 Matcher acharConjuntoMatcher = acharConjunto.matcher(linha);
                 Matcher acharElementoMatcher = acharElemento.matcher(linha);
                 Matcher numeroMatcher = numero.matcher(linha);
 
+                Conjunto target = new Conjunto();
                 System.out.print("\n");
+                // Econtrando conjuntos
                 if (acharConjuntoMatcher.find()) {
-                    System.out.print("conjunto -> ");
-                    //lnha de conjunto
+                    // Nome do conjunto
+                    String nome = acharConjuntoMatcher.group();
+                    // Adicion instancia de conjunto a lista
+                    conjuntos.add(new Conjunto(nome));
+                    System.out.print("conjunto " + nome + " -> ");
+
                     while (numeroMatcher.find()) {
+                        // Pega valores
                         String value = numeroMatcher.group();
-                        System.out.print(value);
+                        // Busca o conjunto a ser incrementado
+                        target = encontraConjunto(nome, conjuntos);
+                        Elemento elemento = new Elemento(value);
+                        target.addElemento(elemento);
+                        System.out.print(elemento.getElemento() + " ");
                     }
                 }
-
+                // Encontrando elementos
                 if (acharElementoMatcher.find()) {
+                    // Nome do elemento
+                    String nome = acharElementoMatcher.group();
                     System.out.print("elemento -> ");
                     //linha de elemento
                     while (numeroMatcher.find()) {
+                        // Pega valor
                         String value = numeroMatcher.group();
-                        System.out.print(value);
+                        // Adiciona instância de elemento a lista
+                        elementos.add(new Elemento(nome, value));
+                        System.out.print(value + " ");
                     }
                 }
 
@@ -261,6 +286,10 @@ public class main extends javax.swing.JFrame {
     private void jtfArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfArquivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfArquivoActionPerformed
+
+    private void jbUniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUniaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbUniaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +324,26 @@ public class main extends javax.swing.JFrame {
                 new main().setVisible(true);
             }
         });
+    }
+
+    public Conjunto encontraConjunto(String nome, ArrayList<Conjunto> lista) {
+        Conjunto target = new Conjunto();
+        for (Conjunto obj : lista) {
+            if (obj.getNome() == nome) {
+                target = obj;
+            }
+        }
+        return target;
+    }
+
+    public Elemento encontraElemento(String nome, ArrayList<Elemento> lista) {
+        Elemento target = new Elemento();
+        for (Elemento obj : lista) {
+            if (obj.getNome() == nome) {
+                target = obj;
+            }
+        }
+        return target;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

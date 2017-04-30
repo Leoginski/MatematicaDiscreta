@@ -13,21 +13,34 @@ import java.util.ArrayList;
  */
 public class Conjunto {
 
+    String nome;
     ArrayList<Elemento> conjunto = new ArrayList<>();
 
     public Conjunto() {
+    }
+
+    public Conjunto(String nome) {
+        this.nome = nome;
     }
 
     public Conjunto(ArrayList<Elemento> conjunto) {
         this.conjunto = conjunto;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public ArrayList<Elemento> getConjunto() {
-        return conjunto;
+        return this.conjunto;
     }
 
     public void setConjunto(ArrayList<Elemento> conjunto) {
         this.conjunto = conjunto;
+    }
+
+    public void addElemento(Elemento E) {
+        this.conjunto.add(E);
     }
 
 }

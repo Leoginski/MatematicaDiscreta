@@ -11,22 +11,31 @@ package model;
  */
 public class Elemento {
 
-    private String elemento;
+    private String nome;
+    private String valor;
 
     public Elemento() {
 
     }
 
     public Elemento(String elemento) {
-        this.elemento = elemento;
+        this.valor = elemento;
+    }
+
+    public Elemento(String nome, String elemento) {
+        this.nome = nome;
+        this.valor = elemento;
     }
 
     public void setElemento(String elemento) {
-        this.elemento = elemento;
+        this.valor = elemento;
     }
 
     public String getElemento() {
-        return elemento;
+        return valor;
     }
-
+    
+    public String getNome(){
+        return this.nome;
+    }
 }
