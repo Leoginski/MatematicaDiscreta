@@ -58,7 +58,7 @@ public class main extends javax.swing.JFrame {
         lblOperacoes = new javax.swing.JLabel();
         jbPertence = new javax.swing.JButton();
         jbNaoPertence = new javax.swing.JButton();
-        Conjunto1 = new javax.swing.JComboBox();
+        javax.swing.JComboBox Conjunto1 = new javax.swing.JComboBox();
         Conjunto2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -183,6 +183,12 @@ public class main extends javax.swing.JFrame {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Conjunto2, org.jdesktop.beansbinding.ObjectProperty.create(), Conjunto2, org.jdesktop.beansbinding.BeanProperty.create("elements"));
         bindingGroup.addBinding(binding);
 
+        Conjunto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Conjunto2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,7 +297,7 @@ public class main extends javax.swing.JFrame {
                     }
                     // TESTE DE OBJETO
                     target = encontraConjunto(nome, conjuntos);
-                    System.out.print("objeto: "+target.getNome());
+                    System.out.print("objeto: " + target.getNome());
                 }
                 // Encontrando elementos
                 if (acharElementoMatcher.find()) {
@@ -307,8 +313,8 @@ public class main extends javax.swing.JFrame {
                     System.out.print(value + " ");
                     elementos.add(new Elemento(nome, value));
                     // TESTE DO OBJETO
-                    shot = encontraElemento(nome, elementos);                   
-                    System.out.print("objeto: "+shot.getNome());
+                    shot = encontraElemento(nome, elementos);
+                    System.out.print("objeto: " + shot.getNome());
                 }
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
@@ -318,10 +324,12 @@ public class main extends javax.swing.JFrame {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
-        
+
         // TENTATIVA DE PREENCHER O COMBOBOX
-        Conjunto1 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
-        Conjunto2 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
+//        JComboBox Conjunto1 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
+//        JComboBox Conjunto2 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
+        JComboBox Conjunto1 = new JComboBox(conjuntos.toArray());
+        JComboBox Conjunto2 = new JComboBox(conjuntos.toArray());
         System.out.println();
     }//GEN-LAST:event_jbArquivoActionPerformed
 
@@ -341,6 +349,10 @@ public class main extends javax.swing.JFrame {
     private void Conjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conjunto1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Conjunto1ActionPerformed
+
+    private void Conjunto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conjunto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Conjunto2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,7 +426,6 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Conjunto1;
     private javax.swing.JComboBox Conjunto2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
