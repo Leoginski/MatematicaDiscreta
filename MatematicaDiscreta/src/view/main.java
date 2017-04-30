@@ -10,10 +10,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JComboBox;
 import model.Conjunto;
 import model.Elemento;
 
@@ -38,6 +40,7 @@ public class main extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jlblArquivo = new javax.swing.JLabel();
         jbArquivo = new javax.swing.JButton();
@@ -55,6 +58,8 @@ public class main extends javax.swing.JFrame {
         lblOperacoes = new javax.swing.JLabel();
         jbPertence = new javax.swing.JButton();
         jbNaoPertence = new javax.swing.JButton();
+        Conjunto1 = new javax.swing.JComboBox();
+        Conjunto2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -77,6 +82,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jbConjuntos.setText("Conjuntos");
+        jbConjuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConjuntosActionPerformed(evt);
+            }
+        });
 
         jbElementos.setText("Elementos");
 
@@ -157,12 +167,28 @@ public class main extends javax.swing.JFrame {
                     .addComponent(lbProdutoCartesiano)))
         );
 
+        Conjunto1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Conjunto1, org.jdesktop.beansbinding.ObjectProperty.create(), Conjunto1, org.jdesktop.beansbinding.BeanProperty.create("elements"));
+        bindingGroup.addBinding(binding);
+
+        Conjunto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Conjunto1ActionPerformed(evt);
+            }
+        });
+
+        Conjunto2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Conjunto2, org.jdesktop.beansbinding.ObjectProperty.create(), Conjunto2, org.jdesktop.beansbinding.BeanProperty.create("elements"));
+        bindingGroup.addBinding(binding);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblArquivo)
@@ -175,29 +201,39 @@ public class main extends javax.swing.JFrame {
                         .addGap(46, 46, 46)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Conjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(Conjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblArquivo)
                     .addComponent(jbArquivo)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Conjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Conjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbConjuntos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbElementos)
-                        .addGap(55, 55, 55))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
+
+        bindingGroup.bind();
 
         pack();
         setLocationRelativeTo(null);
@@ -237,40 +273,43 @@ public class main extends javax.swing.JFrame {
                 Matcher numeroMatcher = numero.matcher(linha);
 
                 Conjunto target = new Conjunto();
+                Elemento shot = new Elemento();
                 System.out.print("\n");
                 // Econtrando conjuntos
                 if (acharConjuntoMatcher.find()) {
                     // Nome do conjunto
                     String nome = acharConjuntoMatcher.group();
-                    // Adicion instancia de conjunto a lista
+                    // Instancia objeto e adiciona ao ArrayList
                     conjuntos.add(new Conjunto(nome));
                     System.out.print("conjunto " + nome + " -> ");
-
                     while (numeroMatcher.find()) {
-                        // Pega valores
+                        // Obtém valor
                         String value = numeroMatcher.group();
-                        // Busca o conjunto a ser incrementado
-                        target = encontraConjunto(nome, conjuntos);
                         Elemento elemento = new Elemento(value);
                         target.addElemento(elemento);
                         System.out.print(elemento.getElemento() + " ");
                     }
+                    // TESTE DE OBJETO
+                    target = encontraConjunto(nome, conjuntos);
+                    System.out.print("objeto: "+target.getNome());
                 }
                 // Encontrando elementos
                 if (acharElementoMatcher.find()) {
                     // Nome do elemento
                     String nome = acharElementoMatcher.group();
-                    System.out.print("elemento -> ");
-                    //linha de elemento
+                    System.out.print("elemento " + nome + " -> ");
+                    String value = "";
+                    // O loop pegará o elemento com 1 ou mais digitos.
                     while (numeroMatcher.find()) {
-                        // Pega valor
-                        String value = numeroMatcher.group();
-                        // Adiciona instância de elemento a lista
-                        elementos.add(new Elemento(nome, value));
-                        System.out.print(value + " ");
+                        value += numeroMatcher.group();
                     }
+                    // Instancia e adiciona ao ArrayList
+                    System.out.print(value + " ");
+                    elementos.add(new Elemento(nome, value));
+                    // TESTE DO OBJETO
+                    shot = encontraElemento(nome, elementos);                   
+                    System.out.print("objeto: "+shot.getNome());
                 }
-
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
 
@@ -279,7 +318,10 @@ public class main extends javax.swing.JFrame {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
-
+        
+        // TENTATIVA DE PREENCHER O COMBOBOX
+        Conjunto1 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
+        Conjunto2 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
         System.out.println();
     }//GEN-LAST:event_jbArquivoActionPerformed
 
@@ -289,7 +331,16 @@ public class main extends javax.swing.JFrame {
 
     private void jbUniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUniaoActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jbUniaoActionPerformed
+
+    private void jbConjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConjuntosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbConjuntosActionPerformed
+
+    private void Conjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conjunto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Conjunto1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,8 +397,32 @@ public class main extends javax.swing.JFrame {
         return target;
     }
 
+    public ArrayList<String> retornaNomesConjuntos(ArrayList<Conjunto> lista) {
+        ArrayList<String> nomes = new ArrayList();
+        for (Conjunto obj : lista) {
+            nomes.add(obj.getNome());
+        }
+        return nomes;
+    }
+
+    public ArrayList<String> retornaNomesElementos(ArrayList<Elemento> lista) {
+        ArrayList<String> nomes = new ArrayList();
+        for (Elemento obj : lista) {
+            nomes.add(obj.getNome());
+        }
+        return nomes;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Conjunto1;
+    private javax.swing.JComboBox Conjunto2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jbArquivo;
     private javax.swing.JButton jbConjuntos;
     private javax.swing.JButton jbContidoOuIgual;
@@ -363,5 +438,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton lbNaoContidoPropriamente;
     private javax.swing.JButton lbProdutoCartesiano;
     private javax.swing.JLabel lblOperacoes;
+    private javax.swing.JTextField obj1;
+    private javax.swing.JTextField obj2;
+    private javax.swing.JTextField obj3;
+    private javax.swing.JTextField obj4;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

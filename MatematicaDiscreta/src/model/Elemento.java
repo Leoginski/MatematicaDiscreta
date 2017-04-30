@@ -34,8 +34,8 @@ public class Elemento {
     public String getElemento() {
         return valor;
     }
-    
-    public String getNome(){
+
+    public String getNome() {
         return this.nome;
     }
 }
