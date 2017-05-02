@@ -5,12 +5,13 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.regex.Matcher;
@@ -30,6 +31,74 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        jcbConjunto1.removeAllItems();
+        jcbConjunto2.removeAllItems();
+        jcbConjunto1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                //Expressoes regulares
+                Pattern acharConjunto = Pattern.compile("[A-Z]");
+
+                if (!(jcbConjunto1.getSelectedItem() == null)) {
+                    String select1 = (String) jcbConjunto1.getSelectedItem();
+                    String select2 = (String) jcbConjunto2.getSelectedItem();
+                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
+                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
+
+                    if (acharConjuntoMatcher1.find()) {
+                        //achou conjunto
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                    } else {
+                        //achou elemento
+                        jbPertence.setEnabled(true);
+                        jbNaoPertence.setEnabled(true);
+                    }
+                    if (acharConjuntoMatcher2.find()) {
+                        //achou conjunto
+                        jbPertence.setEnabled(true);
+                        jbNaoPertence.setEnabled(true);
+                    } else {
+                        //achou elemento
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                    }
+                }
+
+            }
+        });
+        jcbConjunto2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                //Expressoes regulares
+                Pattern acharConjunto = Pattern.compile("[A-Z]");
+
+                if (!(jcbConjunto2.getSelectedItem() == null)) {
+                    String select1 = (String) jcbConjunto1.getSelectedItem();
+                    String select2 = (String) jcbConjunto2.getSelectedItem();
+                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
+                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
+
+                    if (acharConjuntoMatcher1.find()) {
+                        //achou conjunto
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                    } else {
+                        //achou elemento
+                        jbPertence.setEnabled(true);
+                        jbNaoPertence.setEnabled(true);
+                    }
+                    if (acharConjuntoMatcher2.find()) {
+                        //achou conjunto
+                        jbPertence.setEnabled(true);
+                        jbNaoPertence.setEnabled(true);
+                    } else {
+                        //achou elemento
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                    }
+                }
+
+            }
+        });
     }
 
     /**
@@ -42,11 +111,8 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jlblArquivo = new javax.swing.JLabel();
         jbArquivo = new javax.swing.JButton();
         jtfArquivo = new javax.swing.JTextField();
-        jbConjuntos = new javax.swing.JButton();
-        jbElementos = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jbContidoOuIgual = new javax.swing.JButton();
         lbNaoContidoOuIgual = new javax.swing.JButton();
@@ -58,13 +124,12 @@ public class main extends javax.swing.JFrame {
         lblOperacoes = new javax.swing.JLabel();
         jbPertence = new javax.swing.JButton();
         jbNaoPertence = new javax.swing.JButton();
-        Conjunto1 = new javax.swing.JComboBox();
-        Conjunto2 = new javax.swing.JComboBox();
+        jcbConjunto1 = new javax.swing.JComboBox();
+        jcbConjunto2 = new javax.swing.JComboBox();
+        jlSeta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        jlblArquivo.setText("Arquivo:");
 
         jbArquivo.setText("Pesquisar...");
         jbArquivo.addActionListener(new java.awt.event.ActionListener() {
@@ -81,20 +146,16 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jbConjuntos.setText("Conjuntos");
-        jbConjuntos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbConjuntosActionPerformed(evt);
-            }
-        });
-
-        jbElementos.setText("Elementos");
-
         jbContidoOuIgual.setText("⊆");
 
         lbNaoContidoOuIgual.setText("!⊆");
 
         lbContidoPropriamente.setText("⊂");
+        lbContidoPropriamente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbContidoPropriamenteActionPerformed(evt);
+            }
+        });
 
         lbNaoContidoPropriamente.setText("!⊂");
 
@@ -112,8 +173,38 @@ public class main extends javax.swing.JFrame {
         lblOperacoes.setText("Operações:");
 
         jbPertence.setText("∈");
+        jbPertence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPertenceActionPerformed(evt);
+            }
+        });
 
         jbNaoPertence.setText("!∈");
+
+        jcbConjunto1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jcbConjunto1, org.jdesktop.beansbinding.ObjectProperty.create(), jcbConjunto1, org.jdesktop.beansbinding.BeanProperty.create("elements"));
+        bindingGroup.addBinding(binding);
+
+        jcbConjunto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbConjunto1ActionPerformed(evt);
+            }
+        });
+
+        jcbConjunto2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jcbConjunto2, org.jdesktop.beansbinding.ObjectProperty.create(), jcbConjunto2, org.jdesktop.beansbinding.BeanProperty.create("elements"));
+        bindingGroup.addBinding(binding);
+
+        jcbConjunto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbConjunto2ActionPerformed(evt);
+            }
+        });
+
+        jlSeta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlSeta.setText("->");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,13 +233,25 @@ public class main extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jbNaoPertence)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbUniao)))))
+                                .addComponent(jbUniao))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlSeta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcbConjunto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlSeta)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblOperacoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -167,76 +270,28 @@ public class main extends javax.swing.JFrame {
                     .addComponent(lbProdutoCartesiano)))
         );
 
-        Conjunto1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Conjunto1, org.jdesktop.beansbinding.ObjectProperty.create(), Conjunto1, org.jdesktop.beansbinding.BeanProperty.create("elements"));
-        bindingGroup.addBinding(binding);
-
-        Conjunto1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Conjunto1ActionPerformed(evt);
-            }
-        });
-
-        Conjunto2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, Conjunto2, org.jdesktop.beansbinding.ObjectProperty.create(), Conjunto2, org.jdesktop.beansbinding.BeanProperty.create("elements"));
-        bindingGroup.addBinding(binding);
-
-        Conjunto2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Conjunto2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlblArquivo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbArquivo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbElementos)
-                            .addComponent(jbConjuntos))
-                        .addGap(46, 46, 46)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Conjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(29, 29, 29)
-                            .addComponent(Conjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jbArquivo)
+                .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblArquivo)
                     .addComponent(jbArquivo)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Conjunto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Conjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbConjuntos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbElementos)
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -324,12 +379,19 @@ public class main extends javax.swing.JFrame {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
-
-        // TENTATIVA DE PREENCHER O COMBOBOX
-//        JComboBox Conjunto1 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
-//        JComboBox Conjunto2 = new JComboBox(new Vector<String>(retornaNomesConjuntos(conjuntos)));
-        JComboBox Conjunto1 = new JComboBox(conjuntos.toArray());
-        JComboBox Conjunto2 = new JComboBox(conjuntos.toArray());
+        // PREENCHER O COMBOBOX
+        for (Conjunto obj : conjuntos) {
+            jcbConjunto1.addItem(obj.getNome());
+        }
+        for (Elemento obj : elementos) {
+            jcbConjunto1.addItem(obj.getNome());
+        }
+        for (Conjunto obj : conjuntos) {
+            jcbConjunto2.addItem(obj.getNome());
+        }
+        for (Elemento obj : elementos) {
+            jcbConjunto2.addItem(obj.getNome());
+        }
         System.out.println();
     }//GEN-LAST:event_jbArquivoActionPerformed
 
@@ -339,20 +401,26 @@ public class main extends javax.swing.JFrame {
 
     private void jbUniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUniaoActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jbUniaoActionPerformed
 
-    private void jbConjuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConjuntosActionPerformed
+    private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbConjuntosActionPerformed
 
-    private void Conjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conjunto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Conjunto1ActionPerformed
+    }//GEN-LAST:event_jcbConjunto1ActionPerformed
 
-    private void Conjunto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Conjunto2ActionPerformed
+    private void jcbConjunto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Conjunto2ActionPerformed
+    }//GEN-LAST:event_jcbConjunto2ActionPerformed
+
+    private void jbPertenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPertenceActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jbPertenceActionPerformed
+
+    private void lbContidoPropriamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbContidoPropriamenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbContidoPropriamenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,18 +494,16 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Conjunto1;
-    private javax.swing.JComboBox Conjunto2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbArquivo;
-    private javax.swing.JButton jbConjuntos;
     private javax.swing.JButton jbContidoOuIgual;
-    private javax.swing.JButton jbElementos;
     private javax.swing.JButton jbIntersecao;
     private javax.swing.JButton jbNaoPertence;
     private javax.swing.JButton jbPertence;
     private javax.swing.JButton jbUniao;
-    private javax.swing.JLabel jlblArquivo;
+    private javax.swing.JComboBox jcbConjunto1;
+    private javax.swing.JComboBox jcbConjunto2;
+    private javax.swing.JLabel jlSeta;
     private javax.swing.JTextField jtfArquivo;
     private javax.swing.JButton lbContidoPropriamente;
     private javax.swing.JButton lbNaoContidoOuIgual;
