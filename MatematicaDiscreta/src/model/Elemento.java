@@ -12,26 +12,26 @@ package model;
 public class Elemento {
 
     private String nome;
-    private String valor;
+    private int valor;
 
     public Elemento() {
 
     }
 
-    public Elemento(String elemento) {
+    public Elemento(int elemento) {
         this.valor = elemento;
     }
 
-    public Elemento(String nome, String elemento) {
+    public Elemento(String nome, int elemento) {
         this.nome = nome;
         this.valor = elemento;
     }
 
-    public void setElemento(String elemento) {
+    public void setElemento(int elemento) {
         this.valor = elemento;
     }
 
-    public String getElemento() {
+    public int getElemento() {
         return valor;
     }
 

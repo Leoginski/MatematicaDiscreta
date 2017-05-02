@@ -58,7 +58,7 @@ public class main extends javax.swing.JFrame {
         lblOperacoes = new javax.swing.JLabel();
         jbPertence = new javax.swing.JButton();
         jbNaoPertence = new javax.swing.JButton();
-        javax.swing.JComboBox Conjunto1 = new javax.swing.JComboBox();
+        Conjunto1 = new javax.swing.JComboBox();
         Conjunto2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,8 +224,8 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jbArquivo)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Conjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Conjunto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Conjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +269,7 @@ public class main extends javax.swing.JFrame {
             //Expressoes regulares
             Pattern acharConjunto = Pattern.compile("[A-Z]");
             Pattern acharElemento = Pattern.compile("([a-z])");
-            Pattern numero = Pattern.compile("\\d");
+            Pattern numero = Pattern.compile("\\d+");
 
             // Varrendo as linhas
             while (linha != null) {
@@ -290,7 +290,7 @@ public class main extends javax.swing.JFrame {
                     System.out.print("conjunto " + nome + " -> ");
                     while (numeroMatcher.find()) {
                         // Obtém valor
-                        String value = numeroMatcher.group();
+                        int value = Integer.parseInt(numeroMatcher.group());
                         Elemento elemento = new Elemento(value);
                         target.addElemento(elemento);
                         System.out.print(elemento.getElemento() + " ");
@@ -304,10 +304,10 @@ public class main extends javax.swing.JFrame {
                     // Nome do elemento
                     String nome = acharElementoMatcher.group();
                     System.out.print("elemento " + nome + " -> ");
-                    String value = "";
+                    int value = 0;
                     // O loop pegará o elemento com 1 ou mais digitos.
                     while (numeroMatcher.find()) {
-                        value += numeroMatcher.group();
+                        value = Integer.parseInt(numeroMatcher.group());
                     }
                     // Instancia e adiciona ao ArrayList
                     System.out.print(value + " ");
@@ -426,14 +426,9 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Conjunto1;
     private javax.swing.JComboBox Conjunto2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jbArquivo;
     private javax.swing.JButton jbConjuntos;
     private javax.swing.JButton jbContidoOuIgual;
@@ -449,10 +444,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton lbNaoContidoPropriamente;
     private javax.swing.JButton lbProdutoCartesiano;
     private javax.swing.JLabel lblOperacoes;
-    private javax.swing.JTextField obj1;
-    private javax.swing.JTextField obj2;
-    private javax.swing.JTextField obj3;
-    private javax.swing.JTextField obj4;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
