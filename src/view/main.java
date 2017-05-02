@@ -50,10 +50,23 @@ public class main extends javax.swing.JFrame {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(true);
+                        jbIntersecao.setEnabled(true);
+                        jbContidoOuIgual.setEnabled(true);
+                        lbNaoContidoOuIgual.setEnabled(true);
+                        lbContidoPropriamente.setEnabled(true);
+                        lbNaoContidoPropriamente.setEnabled(true);
+                        lbProdutoCartesiano.setEnabled(true);
                     } else {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(false);
+                        jbIntersecao.setEnabled(false);
+                        jbContidoOuIgual.setEnabled(false);
+                        lbNaoContidoOuIgual.setEnabled(false);
+                        lbContidoPropriamente.setEnabled(false);
+                        lbNaoContidoPropriamente.setEnabled(false);
+                        lbProdutoCartesiano.setEnabled(false);
+
                     }
 
                     if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
@@ -79,10 +92,22 @@ public class main extends javax.swing.JFrame {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(true);
+                        jbIntersecao.setEnabled(true);
+                        jbContidoOuIgual.setEnabled(true);
+                        lbNaoContidoOuIgual.setEnabled(true);
+                        lbContidoPropriamente.setEnabled(true);
+                        lbNaoContidoPropriamente.setEnabled(true);
+                        lbProdutoCartesiano.setEnabled(true);
                     } else {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(false);
+                        jbIntersecao.setEnabled(false);
+                        jbContidoOuIgual.setEnabled(false);
+                        lbNaoContidoOuIgual.setEnabled(false);
+                        lbContidoPropriamente.setEnabled(false);
+                        lbNaoContidoPropriamente.setEnabled(false);
+                        lbProdutoCartesiano.setEnabled(false);
                     }
 
                     if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
@@ -412,15 +437,34 @@ public class main extends javax.swing.JFrame {
             jbPertence.setEnabled(false);
             jbNaoPertence.setEnabled(false);
             jbUniao.setEnabled(true);
+            jbIntersecao.setEnabled(true);
+            jbContidoOuIgual.setEnabled(true);
+            lbNaoContidoOuIgual.setEnabled(true);
+            lbContidoPropriamente.setEnabled(true);
+            lbNaoContidoPropriamente.setEnabled(true);
+            lbProdutoCartesiano.setEnabled(true);
         } else {
             jbPertence.setEnabled(false);
             jbNaoPertence.setEnabled(false);
             jbUniao.setEnabled(false);
+            jbIntersecao.setEnabled(false);
+            jbContidoOuIgual.setEnabled(false);
+            lbNaoContidoOuIgual.setEnabled(false);
+            lbContidoPropriamente.setEnabled(false);
+            lbNaoContidoPropriamente.setEnabled(false);
+            lbProdutoCartesiano.setEnabled(false);
         }
 
         if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
             jbPertence.setEnabled(true);
             jbNaoPertence.setEnabled(true);
+            jbUniao.setEnabled(false);
+            jbIntersecao.setEnabled(false);
+            jbContidoOuIgual.setEnabled(false);
+            lbNaoContidoOuIgual.setEnabled(false);
+            lbContidoPropriamente.setEnabled(false);
+            lbNaoContidoPropriamente.setEnabled(false);
+            lbProdutoCartesiano.setEnabled(false);
         }
     }//GEN-LAST:event_jbArquivoActionPerformed
 
