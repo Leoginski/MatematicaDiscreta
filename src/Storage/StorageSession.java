@@ -77,7 +77,7 @@ public class StorageSession {
         return false;
     }
 
-    public static Conjunto Uniao(Conjunto obj1, Conjunto obj2) {
+    public static Conjunto unirConjuntos(Conjunto obj1, Conjunto obj2) {
         Conjunto Uniao = new Conjunto("Uniao");
         for (Elemento ele1 : obj1.getConjunto()) {
             Uniao.addElemento(ele1);
@@ -89,11 +89,15 @@ public class StorageSession {
     }
 
     public static String imprimeConjunto(Conjunto obj) {
+        if (obj.getConjunto().isEmpty()) {
+            return obj.getNome() + " = {ø}";
+        }
+
         String conjunto = obj.getNome() + " = {";
         for (Elemento ele : obj.getConjunto()) {
             conjunto += ele.getValor() + ",";
         }
-//        conjunto = conjunto.substring(0, conjunto.length() - 1);
+        conjunto = conjunto.substring(0, conjunto.length() - 1);
         conjunto += "}";
         return conjunto;
     }

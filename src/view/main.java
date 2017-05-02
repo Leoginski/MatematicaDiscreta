@@ -35,23 +35,32 @@ public class main extends javax.swing.JFrame {
         jcbConjunto2.removeAllItems();
         jbPertence.setEnabled(false);
         jbNaoPertence.setEnabled(false);
+        jbUniao.setEnabled(false);
+
         jcbConjunto1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                //Expressoes regulares
-                if (!(jcbConjunto1.getSelectedItem() == null)) {
+                if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
                     Pattern acharConjunto = Pattern.compile("[A-Z]");
                     String select1 = (String) jcbConjunto1.getSelectedItem();
+                    String select2 = (String) jcbConjunto2.getSelectedItem();
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
+                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
-                    if (acharConjuntoMatcher1.find()) {
-                        //achou conjunto
+                    if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
+                        jbUniao.setEnabled(true);
                     } else {
-                        //achou elemento
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                        jbUniao.setEnabled(false);
+                    }
+
+                    if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
                         jbPertence.setEnabled(true);
                         jbNaoPertence.setEnabled(true);
                     }
+
                 }
 
             }
@@ -59,24 +68,28 @@ public class main extends javax.swing.JFrame {
         });
         jcbConjunto2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                //Expressoes regulares
-
-                if (!(jcbConjunto2.getSelectedItem() == null)) {
+                if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
                     Pattern acharConjunto = Pattern.compile("[A-Z]");
+                    String select1 = (String) jcbConjunto1.getSelectedItem();
                     String select2 = (String) jcbConjunto2.getSelectedItem();
+                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
                     Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
-                    if (acharConjuntoMatcher2.find()) {
-                        //achou conjunto
-                        jbPertence.setEnabled(true);
-                        jbNaoPertence.setEnabled(true);
-                    } else {
-                        //achou elemento
+                    if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
+                        jbUniao.setEnabled(true);
+                    } else {
+                        jbPertence.setEnabled(false);
+                        jbNaoPertence.setEnabled(false);
+                        jbUniao.setEnabled(false);
+                    }
+
+                    if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
+                        jbPertence.setEnabled(true);
+                        jbNaoPertence.setEnabled(true);
                     }
                 }
-
             }
         });
     }
@@ -197,46 +210,50 @@ public class main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jlSeta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbContidoOuIgual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbNaoContidoOuIgual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbIntersecao))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbContidoPropriamente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbNaoContidoPropriamente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbProdutoCartesiano))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbPertence)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblOperacoes)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbPertence)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbNaoPertence)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbUniao))))
+                                .addComponent(jbUniao))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbContidoPropriamente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbNaoContidoPropriamente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbProdutoCartesiano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jbContidoOuIgual)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbNaoContidoOuIgual)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jbIntersecao)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlSeta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(43, 43, 43)
+                        .addComponent(lblOperacoes)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbConjunto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlSeta)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlSeta)
+                    .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblOperacoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,22 +277,25 @@ public class main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jbArquivo)
-                .addGap(0, 0, 0)
-                .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jbArquivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbArquivo)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -384,13 +404,13 @@ public class main extends javax.swing.JFrame {
         Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
         if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
-            //achou conjunto
             jbPertence.setEnabled(false);
             jbNaoPertence.setEnabled(false);
+            jbUniao.setEnabled(true);
         } else {
-            //achou elemento
             jbPertence.setEnabled(false);
             jbNaoPertence.setEnabled(false);
+            jbUniao.setEnabled(false);
         }
 
         if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
@@ -407,7 +427,7 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.Uniao(obj1, obj2)));
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.unirConjuntos(obj1, obj2)));
     }//GEN-LAST:event_jbUniaoActionPerformed
 
     private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed

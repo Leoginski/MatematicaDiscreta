@@ -18,13 +18,13 @@ public class Elemento {
 
     }
 
-    public Elemento(int elemento) {
-        this.valor = elemento;
+    public Elemento(int valor) {
+        this.valor = valor;
     }
 
-    public Elemento(String nome, int elemento) {
+    public Elemento(String nome, int valor) {
         this.nome = nome;
-        this.valor = elemento;
+        this.valor = valor;
     }
 
     public void setValor(int valor) {

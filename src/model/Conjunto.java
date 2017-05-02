@@ -40,15 +40,14 @@ public class Conjunto {
     }
 
     public void addElemento(Elemento E) {
-        boolean check = false;
+        int check = 0;
         for (Elemento ele : this.conjunto) {
             if (ele.getValor() == E.getValor()) {
-                check = false;
+                check++;
             } else {
-                check = true;
             }
         }
-        if (check) {
+        if (check == 0) {
             this.conjunto.add(E);
         }
     }
