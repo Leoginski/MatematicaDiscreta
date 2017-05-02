@@ -5,6 +5,7 @@
  */
 package view;
 
+import Storage.StorageSession;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -33,16 +34,15 @@ public class main extends javax.swing.JFrame {
         initComponents();
         jcbConjunto1.removeAllItems();
         jcbConjunto2.removeAllItems();
+        jbPertence.setEnabled(false);
+        jbNaoPertence.setEnabled(false);
         jcbConjunto1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 //Expressoes regulares
-                Pattern acharConjunto = Pattern.compile("[A-Z]");
-
                 if (!(jcbConjunto1.getSelectedItem() == null)) {
+                    Pattern acharConjunto = Pattern.compile("[A-Z]");
                     String select1 = (String) jcbConjunto1.getSelectedItem();
-                    String select2 = (String) jcbConjunto2.getSelectedItem();
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
-                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
                     if (acharConjuntoMatcher1.find()) {
                         //achou conjunto
@@ -52,40 +52,21 @@ public class main extends javax.swing.JFrame {
                         //achou elemento
                         jbPertence.setEnabled(true);
                         jbNaoPertence.setEnabled(true);
-                    }
-                    if (acharConjuntoMatcher2.find()) {
-                        //achou conjunto
-                        jbPertence.setEnabled(true);
-                        jbNaoPertence.setEnabled(true);
-                    } else {
-                        //achou elemento
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
                     }
                 }
 
             }
+
         });
         jcbConjunto2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 //Expressoes regulares
-                Pattern acharConjunto = Pattern.compile("[A-Z]");
 
                 if (!(jcbConjunto2.getSelectedItem() == null)) {
-                    String select1 = (String) jcbConjunto1.getSelectedItem();
+                    Pattern acharConjunto = Pattern.compile("[A-Z]");
                     String select2 = (String) jcbConjunto2.getSelectedItem();
-                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
                     Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
-                    if (acharConjuntoMatcher1.find()) {
-                        //achou conjunto
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
-                    } else {
-                        //achou elemento
-                        jbPertence.setEnabled(true);
-                        jbNaoPertence.setEnabled(true);
-                    }
                     if (acharConjuntoMatcher2.find()) {
                         //achou conjunto
                         jbPertence.setEnabled(true);
@@ -310,10 +291,6 @@ public class main extends javax.swing.JFrame {
         File txtFileLer = new File(fileChooser.getSelectedFile().getAbsolutePath());
         jtfArquivo.setText(txtFileLer.getName());
 
-        // Listas para receber os objetos
-        ArrayList<Conjunto> conjuntos = new ArrayList<>();
-        ArrayList<Elemento> elementos = new ArrayList<>();
-
         // Leitura do arquivo
         try {
             FileReader arq = new FileReader(txtFileLer);
@@ -333,16 +310,15 @@ public class main extends javax.swing.JFrame {
                 Matcher acharElementoMatcher = acharElemento.matcher(linha);
                 Matcher numeroMatcher = numero.matcher(linha);
 
-                Conjunto target = new Conjunto();
-                Elemento shot = new Elemento();
                 System.out.print("\n");
                 // Econtrando conjuntos
                 if (acharConjuntoMatcher.find()) {
                     // Nome do conjunto
                     String nome = acharConjuntoMatcher.group();
                     // Instancia objeto e adiciona ao ArrayList
-                    conjuntos.add(new Conjunto(nome));
                     System.out.print("conjunto " + nome + " -> ");
+                    Conjunto target = new Conjunto(nome);
+
                     while (numeroMatcher.find()) {
                         // Obtém valor
                         int value = Integer.parseInt(numeroMatcher.group());
@@ -351,7 +327,7 @@ public class main extends javax.swing.JFrame {
                         System.out.print(elemento.getElemento() + " ");
                     }
                     // TESTE DE OBJETO
-                    target = encontraConjunto(nome, conjuntos);
+                    StorageSession.setConjuntos(target);
                     System.out.print("objeto: " + target.getNome());
                 }
                 // Encontrando elementos
@@ -359,16 +335,17 @@ public class main extends javax.swing.JFrame {
                     // Nome do elemento
                     String nome = acharElementoMatcher.group();
                     System.out.print("elemento " + nome + " -> ");
+
                     int value = 0;
                     // O loop pegará o elemento com 1 ou mais digitos.
                     while (numeroMatcher.find()) {
                         value = Integer.parseInt(numeroMatcher.group());
                     }
+                    Elemento shot = new Elemento(nome, value);
                     // Instancia e adiciona ao ArrayList
                     System.out.print(value + " ");
-                    elementos.add(new Elemento(nome, value));
                     // TESTE DO OBJETO
-                    shot = encontraElemento(nome, elementos);
+                    StorageSession.setElementos(shot);
                     System.out.print("objeto: " + shot.getNome());
                 }
                 linha = lerArq.readLine(); // lê da segunda até a última linha
@@ -380,19 +357,41 @@ public class main extends javax.swing.JFrame {
                     e.getMessage());
         }
         // PREENCHER O COMBOBOX
-        for (Conjunto obj : conjuntos) {
+        for (Conjunto obj : StorageSession.getConjuntos()) {
             jcbConjunto1.addItem(obj.getNome());
         }
-        for (Elemento obj : elementos) {
+        for (Elemento obj : StorageSession.getElementos()) {
             jcbConjunto1.addItem(obj.getNome());
         }
-        for (Conjunto obj : conjuntos) {
+        for (Conjunto obj : StorageSession.getConjuntos()) {
             jcbConjunto2.addItem(obj.getNome());
         }
-        for (Elemento obj : elementos) {
+        for (Elemento obj : StorageSession.getElementos()) {
             jcbConjunto2.addItem(obj.getNome());
         }
-        System.out.println();
+
+        jcbConjunto1.setSelectedIndex(0);
+        jcbConjunto2.setSelectedIndex(0);
+        Pattern acharConjunto = Pattern.compile("[A-Z]");
+        String select1 = (String) jcbConjunto1.getSelectedItem();
+        Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
+        String select2 = (String) jcbConjunto2.getSelectedItem();
+        Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
+
+        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
+            //achou conjunto
+            jbPertence.setEnabled(false);
+            jbNaoPertence.setEnabled(false);
+        } else {
+            //achou elemento
+            jbPertence.setEnabled(false);
+            jbNaoPertence.setEnabled(false);
+        }
+
+        if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
+            jbPertence.setEnabled(true);
+            jbNaoPertence.setEnabled(true);
+        }
     }//GEN-LAST:event_jbArquivoActionPerformed
 
     private void jtfArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfArquivoActionPerformed
@@ -414,7 +413,7 @@ public class main extends javax.swing.JFrame {
 
     private void jbPertenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPertenceActionPerformed
         // TODO add your handling code here:
-
+        String select1 = (String) jcbConjunto1.getSelectedItem();
 
     }//GEN-LAST:event_jbPertenceActionPerformed
 
