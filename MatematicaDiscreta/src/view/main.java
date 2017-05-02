@@ -12,12 +12,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import model.Conjunto;
 import model.Elemento;
 
@@ -161,6 +160,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jbNaoPertence.setText("!∈");
+        jbNaoPertence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNaoPertenceActionPerformed(evt);
+            }
+        });
 
         jcbConjunto1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -257,6 +261,7 @@ public class main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jbArquivo)
+                .addGap(0, 0, 0)
                 .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -324,7 +329,7 @@ public class main extends javax.swing.JFrame {
                         int value = Integer.parseInt(numeroMatcher.group());
                         Elemento elemento = new Elemento(value);
                         target.addElemento(elemento);
-                        System.out.print(elemento.getElemento() + " ");
+                        System.out.print(elemento.getValor() + " ");
                     }
                     // TESTE DE OBJETO
                     StorageSession.setConjuntos(target);
@@ -413,13 +418,27 @@ public class main extends javax.swing.JFrame {
 
     private void jbPertenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPertenceActionPerformed
         // TODO add your handling code here:
-        String select1 = (String) jcbConjunto1.getSelectedItem();
-
+        Elemento elemento = StorageSession.encontraElemento((String) jcbConjunto1.getSelectedItem());
+        Conjunto conjunto = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (StorageSession.isPertence(elemento, conjunto)) {
+            JOptionPane.showMessageDialog(null, "VERDADEIRO");
+        } else {
+            JOptionPane.showMessageDialog(null, "FALSO");
+        }
     }//GEN-LAST:event_jbPertenceActionPerformed
 
     private void lbContidoPropriamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbContidoPropriamenteActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_lbContidoPropriamenteActionPerformed
+
+    private void jbNaoPertenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNaoPertenceActionPerformed
+        Elemento elemento = StorageSession.encontraElemento((String) jcbConjunto1.getSelectedItem());
+        Conjunto conjunto = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (!StorageSession.isPertence(elemento, conjunto)) {
+            JOptionPane.showMessageDialog(null, "VERDADEIRO");
+        } else {
+            JOptionPane.showMessageDialog(null, "FALSO");
+        }
+    }//GEN-LAST:event_jbNaoPertenceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,42 +473,6 @@ public class main extends javax.swing.JFrame {
                 new main().setVisible(true);
             }
         });
-    }
-
-    public Conjunto encontraConjunto(String nome, ArrayList<Conjunto> lista) {
-        Conjunto target = new Conjunto();
-        for (Conjunto obj : lista) {
-            if (obj.getNome() == nome) {
-                target = obj;
-            }
-        }
-        return target;
-    }
-
-    public Elemento encontraElemento(String nome, ArrayList<Elemento> lista) {
-        Elemento target = new Elemento();
-        for (Elemento obj : lista) {
-            if (obj.getNome() == nome) {
-                target = obj;
-            }
-        }
-        return target;
-    }
-
-    public ArrayList<String> retornaNomesConjuntos(ArrayList<Conjunto> lista) {
-        ArrayList<String> nomes = new ArrayList();
-        for (Conjunto obj : lista) {
-            nomes.add(obj.getNome());
-        }
-        return nomes;
-    }
-
-    public ArrayList<String> retornaNomesElementos(ArrayList<Elemento> lista) {
-        ArrayList<String> nomes = new ArrayList();
-        for (Elemento obj : lista) {
-            nomes.add(obj.getNome());
-        }
-        return nomes;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

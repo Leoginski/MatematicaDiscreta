@@ -209,6 +209,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="!&#x2208;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNaoPertenceActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcbConjunto1">
           <Properties>

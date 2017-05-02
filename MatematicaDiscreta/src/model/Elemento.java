@@ -27,11 +27,11 @@ public class Elemento {
         this.valor = elemento;
     }
 
-    public void setElemento(int elemento) {
-        this.valor = elemento;
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 
-    public int getElemento() {
+    public int getValor() {
         return valor;
     }
 
