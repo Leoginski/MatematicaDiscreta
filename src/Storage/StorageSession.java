@@ -76,4 +76,25 @@ public class StorageSession {
         }
         return false;
     }
+
+    public static Conjunto Uniao(Conjunto obj1, Conjunto obj2) {
+        Conjunto Uniao = new Conjunto("Uniao");
+        for (Elemento ele1 : obj1.getConjunto()) {
+            Uniao.addElemento(ele1);
+        }
+        for (Elemento ele2 : obj2.getConjunto()) {
+            Uniao.addElemento(ele2);
+        }
+        return Uniao;
+    }
+
+    public static String imprimeConjunto(Conjunto obj) {
+        String conjunto = obj.getNome() + " = {";
+        for (Elemento ele : obj.getConjunto()) {
+            conjunto += ele.getValor() + ",";
+        }
+//        conjunto = conjunto.substring(0, conjunto.length() - 1);
+        conjunto += "}";
+        return conjunto;
+    }
 }

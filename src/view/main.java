@@ -405,6 +405,9 @@ public class main extends javax.swing.JFrame {
 
     private void jbUniaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUniaoActionPerformed
         // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.Uniao(obj1, obj2)));
     }//GEN-LAST:event_jbUniaoActionPerformed
 
     private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed

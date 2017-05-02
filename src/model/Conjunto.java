@@ -40,7 +40,17 @@ public class Conjunto {
     }
 
     public void addElemento(Elemento E) {
-        this.conjunto.add(E);
+        boolean check = false;
+        for (Elemento ele : this.conjunto) {
+            if (ele.getValor() == E.getValor()) {
+                check = false;
+            } else {
+                check = true;
+            }
+        }
+        if (check) {
+            this.conjunto.add(E);
+        }
     }
 
 }
