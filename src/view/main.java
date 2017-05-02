@@ -160,6 +160,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jbIntersecao.setText("∩");
+        jbIntersecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbIntersecaoActionPerformed(evt);
+            }
+        });
 
         lbProdutoCartesiano.setText("×");
 
@@ -462,6 +467,14 @@ public class main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "FALSO");
         }
     }//GEN-LAST:event_jbNaoPertenceActionPerformed
+
+    private void jbIntersecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIntersecaoActionPerformed
+        // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.intersecaoConjuntos(obj1, obj2)));
+
+    }//GEN-LAST:event_jbIntersecaoActionPerformed
 
     /**
      * @param args the command line arguments

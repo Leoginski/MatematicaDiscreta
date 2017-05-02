@@ -78,7 +78,7 @@ public class StorageSession {
     }
 
     public static Conjunto unirConjuntos(Conjunto obj1, Conjunto obj2) {
-        Conjunto Uniao = new Conjunto("Uniao");
+        Conjunto Uniao = new Conjunto(obj1.getNome() + "∪" + obj2.getNome());
         for (Elemento ele1 : obj1.getConjunto()) {
             Uniao.addElemento(ele1);
         }
@@ -86,6 +86,19 @@ public class StorageSession {
             Uniao.addElemento(ele2);
         }
         return Uniao;
+    }
+
+    public static Conjunto intersecaoConjuntos(Conjunto obj1, Conjunto obj2) {
+        Conjunto Intersecao = new Conjunto(obj1.getNome() + "∩" + obj2.getNome());
+        for (Elemento ele1 : obj1.getConjunto()) {
+            for (Elemento ele2 : obj2.getConjunto()) {
+                if (ele1.getValor() == ele2.getValor()) {
+                    Intersecao.addElemento(ele2);
+                }
+
+            }
+        }
+        return Intersecao;
     }
 
     public static String imprimeConjunto(Conjunto obj) {

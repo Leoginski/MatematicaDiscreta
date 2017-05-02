@@ -196,6 +196,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2229;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbIntersecaoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="lbProdutoCartesiano">
           <Properties>
