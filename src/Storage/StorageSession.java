@@ -85,6 +85,9 @@ public class StorageSession {
         for (Elemento ele2 : obj2.getConjunto()) {
             Uniao.addElemento(ele2);
         }
+        if (!existeNomeIgualConjunto(Uniao.getNome())) {
+            conjuntos.add(Uniao);
+        }
         return Uniao;
     }
 
@@ -98,6 +101,10 @@ public class StorageSession {
 
             }
         }
+        if (!existeNomeIgualConjunto(Intersecao.getNome())) {
+            conjuntos.add(Intersecao);
+        }
+
         return Intersecao;
     }
 
@@ -138,6 +145,22 @@ public class StorageSession {
         return produto;
     }
 
+    public static ArrayList<String> getNomesConjuntos() {
+        ArrayList<String> allNomes = new ArrayList<>();
+        for (Conjunto obj : conjuntos) {
+            allNomes.add(obj.getNome());
+        }
+        return allNomes;
+    }
+
+    public static ArrayList<String> getNomesElementos() {
+        ArrayList<String> allNomes = new ArrayList<>();
+        for (Elemento obj : elementos) {
+            allNomes.add(obj.getNome());
+        }
+        return allNomes;
+    }
+
     public static String imprimeConjunto(Conjunto obj) {
         if (obj.getConjunto().isEmpty()) {
             return obj.getNome() + " = {ø}";
@@ -152,5 +175,30 @@ public class StorageSession {
         conjunto += "}";
 
         return conjunto;
+    }
+
+    public static boolean existeNomeIgualConjunto(String nome) {
+        boolean cont = false;
+        for (String obj : StorageSession.getNomesConjuntos()) {
+            if (nome.equals(obj)) {
+                cont = true;
+            }
+        }
+        return cont;
+    }
+
+    public static boolean existeNomeIgualElemento(String nome) {
+        boolean cont = false;
+        for (String obj : StorageSession.getNomesElementos()) {
+            if (nome.equals(obj)) {
+                cont = true;
+            }
+        }
+        return cont;
+    }
+
+    public static void resetStorage() {
+        elementos = new ArrayList<>();
+        conjuntos = new ArrayList<>();
     }
 }

@@ -34,10 +34,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbArquivo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtfArquivo" min="-2" pref="99" max="-2" attributes="0"/>
+                      <Component id="jtfArquivo" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

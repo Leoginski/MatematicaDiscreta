@@ -6,6 +6,7 @@
 package view;
 
 import Storage.StorageSession;
+import static Storage.StorageSession.existeNomeIgualConjunto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -36,11 +37,17 @@ public class main extends javax.swing.JFrame {
         jbPertence.setEnabled(false);
         jbNaoPertence.setEnabled(false);
         jbUniao.setEnabled(false);
+        jbIntersecao.setEnabled(false);
+        jbContidoOuIgual.setEnabled(false);
+        lbNaoContidoOuIgual.setEnabled(false);
+        lbContidoPropriamente.setEnabled(false);
+        lbNaoContidoPropriamente.setEnabled(false);
+        lbProdutoCartesiano.setEnabled(false);
 
         jcbConjunto1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
-                    Pattern acharConjunto = Pattern.compile("[A-Z]");
+                    Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
                     String select1 = (String) jcbConjunto1.getSelectedItem();
                     String select2 = (String) jcbConjunto2.getSelectedItem();
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
@@ -82,7 +89,7 @@ public class main extends javax.swing.JFrame {
         jcbConjunto2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
-                    Pattern acharConjunto = Pattern.compile("[A-Z]");
+                    Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
                     String select1 = (String) jcbConjunto1.getSelectedItem();
                     String select2 = (String) jcbConjunto2.getSelectedItem();
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
@@ -335,8 +342,8 @@ public class main extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jbArquivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,6 +365,10 @@ public class main extends javax.swing.JFrame {
 
     private void jbArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbArquivoActionPerformed
         // TODO add your handling code here:
+        StorageSession.resetStorage();
+        jcbConjunto1.removeAllItems();
+        jcbConjunto2.removeAllItems();
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileNameExtensionFilter("Filtro .txt", "txt"));
         fileChooser.setAcceptAllFileFilterUsed(false);
@@ -385,47 +396,48 @@ public class main extends javax.swing.JFrame {
                 Matcher acharElementoMatcher = acharElemento.matcher(linha);
                 Matcher numeroMatcher = numero.matcher(linha);
 
-                System.out.print("\n");
                 // Econtrando conjuntos
                 if (acharConjuntoMatcher.find()) {
                     // Nome do conjunto
                     String nome = acharConjuntoMatcher.group();
                     // Instancia objeto e adiciona ao ArrayList
-                    System.out.print("conjunto " + nome + " -> ");
-                    Conjunto target = new Conjunto(nome);
+                    if (!StorageSession.existeNomeIgualConjunto(nome)) {
+                        Conjunto target = new Conjunto(nome);
 
-                    while (numeroMatcher.find()) {
-                        // Obtém valor
-                        int value = Integer.parseInt(numeroMatcher.group());
-                        Elemento elemento = new Elemento(value);
-                        target.addElemento(elemento);
-                        System.out.print(elemento.getValor() + " ");
+                        while (numeroMatcher.find()) {
+                            // Obtém valor
+                            int value = Integer.parseInt(numeroMatcher.group());
+                            Elemento elemento = new Elemento(value);
+                            target.addElemento(elemento);
+                        }
+                        // TESTE DE OBJETO
+                        StorageSession.setConjuntos(target);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Conjunto " + nome + " já existe!");
                     }
-                    // TESTE DE OBJETO
-                    StorageSession.setConjuntos(target);
-                    System.out.print("objeto: " + target.getNome());
                 }
                 // Encontrando elementos
                 if (acharElementoMatcher.find()) {
                     // Nome do elemento
                     String nome = acharElementoMatcher.group();
-                    System.out.print("elemento " + nome + " -> ");
 
                     int value = 0;
-                    // O loop pegará o elemento com 1 ou mais digitos.
-                    while (numeroMatcher.find()) {
-                        value = Integer.parseInt(numeroMatcher.group());
+
+                    if (!StorageSession.existeNomeIgualElemento(nome)) {
+                        // O loop pegará o elemento com 1 ou mais digitos.
+                        while (numeroMatcher.find()) {
+                            value = Integer.parseInt(numeroMatcher.group());
+                        }
+                        Elemento shot = new Elemento(nome, value);
+                        // Instancia e adiciona ao ArrayList
+                        // TESTE DO OBJETO
+                        StorageSession.setElementos(shot);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Elemento " + nome + " já existe!");
                     }
-                    Elemento shot = new Elemento(nome, value);
-                    // Instancia e adiciona ao ArrayList
-                    System.out.print(value + " ");
-                    // TESTE DO OBJETO
-                    StorageSession.setElementos(shot);
-                    System.out.print("objeto: " + shot.getNome());
                 }
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
-
             arq.close();
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
@@ -447,7 +459,7 @@ public class main extends javax.swing.JFrame {
 
         jcbConjunto1.setSelectedIndex(0);
         jcbConjunto2.setSelectedIndex(0);
-        Pattern acharConjunto = Pattern.compile("[A-Z]");
+        Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
         String select1 = (String) jcbConjunto1.getSelectedItem();
         Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
         String select2 = (String) jcbConjunto2.getSelectedItem();
@@ -496,7 +508,10 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.unirConjuntos(obj1, obj2)));
+        Conjunto uniao = StorageSession.unirConjuntos(obj1, obj2);
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(uniao));
+        jcbConjunto1.addItem(uniao.getNome());
+        jcbConjunto2.addItem(uniao.getNome());
     }//GEN-LAST:event_jbUniaoActionPerformed
 
     private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed
@@ -533,8 +548,10 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.intersecaoConjuntos(obj1, obj2)));
-
+        Conjunto intersecao = StorageSession.unirConjuntos(obj1, obj2);
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
+        jcbConjunto1.addItem(intersecao.getNome());
+        jcbConjunto2.addItem(intersecao.getNome());
     }//GEN-LAST:event_jbIntersecaoActionPerformed
 
     private void jbContidoOuIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContidoOuIgualActionPerformed
