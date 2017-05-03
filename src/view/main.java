@@ -165,8 +165,18 @@ public class main extends javax.swing.JFrame {
         });
 
         jbContidoOuIgual.setText("⊆");
+        jbContidoOuIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbContidoOuIgualActionPerformed(evt);
+            }
+        });
 
         lbNaoContidoOuIgual.setText("!⊆");
+        lbNaoContidoOuIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbNaoContidoOuIgualActionPerformed(evt);
+            }
+        });
 
         lbContidoPropriamente.setText("⊂");
         lbContidoPropriamente.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +186,11 @@ public class main extends javax.swing.JFrame {
         });
 
         lbNaoContidoPropriamente.setText("!⊂");
+        lbNaoContidoPropriamente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbNaoContidoPropriamenteActionPerformed(evt);
+            }
+        });
 
         jbUniao.setText("∪");
         jbUniao.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +207,11 @@ public class main extends javax.swing.JFrame {
         });
 
         lbProdutoCartesiano.setText("×");
+        lbProdutoCartesiano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbProdutoCartesianoActionPerformed(evt);
+            }
+        });
 
         lblOperacoes.setText("Operações:");
 
@@ -493,14 +513,11 @@ public class main extends javax.swing.JFrame {
         Elemento elemento = StorageSession.encontraElemento((String) jcbConjunto1.getSelectedItem());
         Conjunto conjunto = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
         if (StorageSession.isPertence(elemento, conjunto)) {
-            JOptionPane.showMessageDialog(null, "VERDADEIRO");
+            JOptionPane.showMessageDialog(null, "PERTENCE");
         } else {
-            JOptionPane.showMessageDialog(null, "FALSO");
+            JOptionPane.showMessageDialog(null, "NÃO PERTENCE");
         }
     }//GEN-LAST:event_jbPertenceActionPerformed
-
-    private void lbContidoPropriamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbContidoPropriamenteActionPerformed
-    }//GEN-LAST:event_lbContidoPropriamenteActionPerformed
 
     private void jbNaoPertenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNaoPertenceActionPerformed
         Elemento elemento = StorageSession.encontraElemento((String) jcbConjunto1.getSelectedItem());
@@ -519,6 +536,55 @@ public class main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(StorageSession.intersecaoConjuntos(obj1, obj2)));
 
     }//GEN-LAST:event_jbIntersecaoActionPerformed
+
+    private void jbContidoOuIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContidoOuIgualActionPerformed
+        // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (StorageSession.isContido(obj1, obj2)) {
+            JOptionPane.showMessageDialog(null, "ESTÁ CONTIDO");
+        } else {
+            JOptionPane.showMessageDialog(null, "NÃO ESTÁ CONTIDO");
+        }
+    }//GEN-LAST:event_jbContidoOuIgualActionPerformed
+
+    private void lbNaoContidoOuIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbNaoContidoOuIgualActionPerformed
+        // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (!StorageSession.isContido(obj1, obj2)) {
+            JOptionPane.showMessageDialog(null, "VERDADEIRO");
+        } else {
+            JOptionPane.showMessageDialog(null, "FALSO");
+        }
+    }//GEN-LAST:event_lbNaoContidoOuIgualActionPerformed
+
+    private void lbContidoPropriamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbContidoPropriamenteActionPerformed
+        // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (StorageSession.isContidoPropriamente(obj1, obj2)) {
+            JOptionPane.showMessageDialog(null, "ESTÁ CONTIDO PROPRIAMENTE");
+        } else {
+            JOptionPane.showMessageDialog(null, "NÃO ESTÁ CONTIDO PROPRIAMENTE");
+        }
+    }//GEN-LAST:event_lbContidoPropriamenteActionPerformed
+
+    private void lbNaoContidoPropriamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbNaoContidoPropriamenteActionPerformed
+        // TODO add your handling code here:
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        if (!StorageSession.isContidoPropriamente(obj1, obj2)) {
+            JOptionPane.showMessageDialog(null, "VERDADEIRO");
+        } else {
+            JOptionPane.showMessageDialog(null, "FALSO");
+        }
+    }//GEN-LAST:event_lbNaoContidoPropriamenteActionPerformed
+
+    private void lbProdutoCartesianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbProdutoCartesianoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_lbProdutoCartesianoActionPerformed
 
     /**
      * @param args the command line arguments

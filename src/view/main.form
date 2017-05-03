@@ -165,11 +165,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x2286;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbContidoOuIgualActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="lbNaoContidoOuIgual">
           <Properties>
             <Property name="text" type="java.lang.String" value="!&#x2286;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lbNaoContidoOuIgualActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="lbContidoPropriamente">
           <Properties>
@@ -183,6 +189,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="!&#x2282;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lbNaoContidoPropriamenteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbUniao">
           <Properties>
@@ -204,6 +213,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xd7;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lbProdutoCartesianoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblOperacoes">
           <Properties>

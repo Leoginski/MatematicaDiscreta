@@ -101,6 +101,32 @@ public class StorageSession {
         return Intersecao;
     }
 
+    public static boolean isContido(Conjunto obj1, Conjunto obj2) {
+        int rangeConjunto1 = obj1.getConjunto().size();
+        int count = 0;
+        for (Elemento ele1 : obj1.getConjunto()) {
+            for (Elemento ele2 : obj2.getConjunto()) {
+                if (ele1.getValor() == ele2.getValor()) {
+                    count++;
+                }
+            }
+        }
+        if (count == rangeConjunto1) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isContidoPropriamente(Conjunto obj1, Conjunto obj2) {
+        int rangeConjunto1 = obj1.getConjunto().size();
+        int rangeConjunto2 = obj2.getConjunto().size();
+
+        if (isContido(obj1, obj2) && rangeConjunto1 != rangeConjunto2) {
+            return true;
+        }
+        return false;
+    }
+
     public static String imprimeConjunto(Conjunto obj) {
         if (obj.getConjunto().isEmpty()) {
             return obj.getNome() + " = {ø}";
