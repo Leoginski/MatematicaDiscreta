@@ -102,7 +102,6 @@ public class StorageSession {
     }
 
     public static boolean isContido(Conjunto obj1, Conjunto obj2) {
-        int rangeConjunto1 = obj1.getConjunto().size();
         int count = 0;
         for (Elemento ele1 : obj1.getConjunto()) {
             for (Elemento ele2 : obj2.getConjunto()) {
@@ -111,20 +110,32 @@ public class StorageSession {
                 }
             }
         }
-        if (count == rangeConjunto1) {
+        if (count == obj1.getConjunto().size()) {
             return true;
         }
         return false;
     }
 
     public static boolean isContidoPropriamente(Conjunto obj1, Conjunto obj2) {
-        int rangeConjunto1 = obj1.getConjunto().size();
-        int rangeConjunto2 = obj2.getConjunto().size();
-
-        if (isContido(obj1, obj2) && rangeConjunto1 != rangeConjunto2) {
+        if (isContido(obj1, obj2) && (obj1.getConjunto().size() != obj2.getConjunto().size())) {
             return true;
         }
         return false;
+    }
+
+    public static String produtoCartesiano(Conjunto obj1, Conjunto obj2) {
+        String produto = obj1.getNome() + "x" + obj2.getNome() + " = {";
+
+        for (Elemento ele1 : obj1.getConjunto()) {
+            for (Elemento ele2 : obj2.getConjunto()) {
+                produto += "(" + ele1.getValor() + "," + ele2.getValor() + "),";
+            }
+        }
+
+        produto = produto.substring(0, produto.length() - 1);
+        produto += "}";
+
+        return produto;
     }
 
     public static String imprimeConjunto(Conjunto obj) {
@@ -136,8 +147,10 @@ public class StorageSession {
         for (Elemento ele : obj.getConjunto()) {
             conjunto += ele.getValor() + ",";
         }
+
         conjunto = conjunto.substring(0, conjunto.length() - 1);
         conjunto += "}";
+
         return conjunto;
     }
 }
