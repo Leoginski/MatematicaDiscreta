@@ -548,7 +548,7 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        Conjunto intersecao = StorageSession.unirConjuntos(obj1, obj2);
+        Conjunto intersecao = StorageSession.intersecaoConjuntos(obj1, obj2);
         JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
         jcbConjunto1.addItem(intersecao.getNome());
         jcbConjunto2.addItem(intersecao.getNome());
