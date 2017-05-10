@@ -6,7 +6,6 @@
 package view;
 
 import Storage.StorageSession;
-import static Storage.StorageSession.existeNomeIgualConjunto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -32,6 +31,7 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        StorageSession.resetStorage();
         jcbConjunto1.removeAllItems();
         jcbConjunto2.removeAllItems();
         jbPertence.setEnabled(false);
@@ -407,10 +407,10 @@ public class main extends javax.swing.JFrame {
                         while (numeroMatcher.find()) {
                             // Obtém valor
                             int value = Integer.parseInt(numeroMatcher.group());
-                            Elemento elemento = new Elemento(value);
+                            Elemento elemento = new Elemento(Integer.toString(value), value);
                             target.addElemento(elemento);
                         }
-                        // TESTE DE OBJETO
+                        // adiciona conjunto
                         StorageSession.setConjuntos(target);
                     } else {
                         JOptionPane.showMessageDialog(null, "Conjunto " + nome + " já existe!");
@@ -429,8 +429,7 @@ public class main extends javax.swing.JFrame {
                             value = Integer.parseInt(numeroMatcher.group());
                         }
                         Elemento shot = new Elemento(nome, value);
-                        // Instancia e adiciona ao ArrayList
-                        // TESTE DO OBJETO
+                        // adiciona elemento
                         StorageSession.setElementos(shot);
                     } else {
                         JOptionPane.showMessageDialog(null, "Elemento " + nome + " já existe!");
@@ -444,17 +443,9 @@ public class main extends javax.swing.JFrame {
                     e.getMessage());
         }
         // PREENCHER O COMBOBOX
-        for (Conjunto obj : StorageSession.getConjuntos()) {
-            jcbConjunto1.addItem(obj.getNome());
-        }
-        for (Elemento obj : StorageSession.getElementos()) {
-            jcbConjunto1.addItem(obj.getNome());
-        }
-        for (Conjunto obj : StorageSession.getConjuntos()) {
-            jcbConjunto2.addItem(obj.getNome());
-        }
-        for (Elemento obj : StorageSession.getElementos()) {
-            jcbConjunto2.addItem(obj.getNome());
+        for (String obj : StorageSession.getComboItens()) {
+            jcbConjunto1.addItem(obj);
+            jcbConjunto2.addItem(obj);
         }
 
         jcbConjunto1.setSelectedIndex(0);
@@ -509,9 +500,14 @@ public class main extends javax.swing.JFrame {
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
         Conjunto uniao = StorageSession.unirConjuntos(obj1, obj2);
-        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(uniao));
-        jcbConjunto1.addItem(uniao.getNome());
-        jcbConjunto2.addItem(uniao.getNome());
+        if (StorageSession.addItemComboBox(uniao.getNome(), StorageSession.getComboItens())) {
+            jcbConjunto1.addItem(uniao.getNome());
+            jcbConjunto2.addItem(uniao.getNome());
+            JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(uniao));
+        } else {
+            JOptionPane.showMessageDialog(null, "Conjunto já existente!");
+        }
+
     }//GEN-LAST:event_jbUniaoActionPerformed
 
     private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed
@@ -549,9 +545,14 @@ public class main extends javax.swing.JFrame {
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
         Conjunto intersecao = StorageSession.intersecaoConjuntos(obj1, obj2);
-        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
-        jcbConjunto1.addItem(intersecao.getNome());
-        jcbConjunto2.addItem(intersecao.getNome());
+
+        if (StorageSession.addItemComboBox(intersecao.getNome(), StorageSession.getComboItens())) {
+            jcbConjunto1.addItem(intersecao.getNome());
+            jcbConjunto2.addItem(intersecao.getNome());
+            JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
+        } else {
+            JOptionPane.showMessageDialog(null, "Conjunto já existente!");
+        }
     }//GEN-LAST:event_jbIntersecaoActionPerformed
 
     private void jbContidoOuIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContidoOuIgualActionPerformed

@@ -17,12 +17,14 @@ public class StorageSession {
 
     private static ArrayList<Elemento> elementos = new ArrayList<>();
     private static ArrayList<Conjunto> conjuntos = new ArrayList<>();
+    private static ArrayList<String> comboItens = new ArrayList<>();
 
     public static ArrayList<Elemento> getElementos() {
         return elementos;
     }
 
     public static void setElementos(Elemento elemento) {
+        comboItens.add(elemento.getNome());
         elementos.add(elemento);
     }
 
@@ -31,7 +33,7 @@ public class StorageSession {
     }
 
     public static void setConjuntos(Conjunto conjunto) {
-        conjuntos.add(conjunto);
+        verificaEAdicionaConjunto(conjunto);
     }
 
     public static Conjunto encontraConjunto(String nome) {
@@ -86,7 +88,7 @@ public class StorageSession {
             Uniao.addElemento(ele2);
         }
         if (!existeNomeIgualConjunto(Uniao.getNome())) {
-            conjuntos.add(Uniao);
+            verificaEAdicionaConjunto(Uniao);
         }
         return Uniao;
     }
@@ -102,7 +104,7 @@ public class StorageSession {
             }
         }
         if (!existeNomeIgualConjunto(Intersecao.getNome())) {
-            conjuntos.add(Intersecao);
+            verificaEAdicionaConjunto(Intersecao);
         }
 
         return Intersecao;
@@ -111,16 +113,18 @@ public class StorageSession {
     public static boolean isContido(Conjunto obj1, Conjunto obj2) {
         int count = 0;
         for (Elemento ele1 : obj1.getConjunto()) {
-            for (Elemento ele2 : obj2.getConjunto()) {
-                if (ele1.getValor() == ele2.getValor()) {
-                    count++;
-                }
+            if (isPertence(ele1, obj2)) {
+                count++;
             }
         }
         if (count == obj1.getConjunto().size()) {
             return true;
         }
         return false;
+    }
+
+    public static ArrayList<String> getComboItens() {
+        return comboItens;
     }
 
     public static boolean isContidoPropriamente(Conjunto obj1, Conjunto obj2) {
@@ -192,6 +196,29 @@ public class StorageSession {
         for (String obj : StorageSession.getNomesElementos()) {
             if (nome.equals(obj)) {
                 cont = true;
+            }
+        }
+        return cont;
+    }
+
+    public static void verificaEAdicionaConjunto(Conjunto conjunto) {
+        boolean cont = false;
+        for (String obj : StorageSession.getNomesConjuntos()) {
+            if (conjunto.getNome().equals(obj)) {
+                cont = true;
+            }
+        }
+        if (!cont) {
+            comboItens.add(conjunto.getNome());
+            conjuntos.add(conjunto);
+        }
+    }
+
+    public static boolean addItemComboBox(String nome, ArrayList<String> nomesCombo) {
+        boolean cont = true;
+        for (String obj : nomesCombo) {
+            if (nome.equals(obj)) {
+                cont = false;
             }
         }
         return cont;
