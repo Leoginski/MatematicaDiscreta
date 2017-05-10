@@ -6,6 +6,7 @@
 package Storage;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Conjunto;
 import model.Elemento;
 
@@ -211,6 +212,8 @@ public class StorageSession {
         if (!cont) {
             comboItens.add(conjunto.getNome());
             conjuntos.add(conjunto);
+        } else {
+            JOptionPane.showMessageDialog(null, "Conjunto já existente!");
         }
     }
 

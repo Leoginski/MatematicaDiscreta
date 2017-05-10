@@ -500,14 +500,9 @@ public class main extends javax.swing.JFrame {
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
         Conjunto uniao = StorageSession.unirConjuntos(obj1, obj2);
-        if (StorageSession.addItemComboBox(uniao.getNome(), StorageSession.getComboItens())) {
-            jcbConjunto1.addItem(uniao.getNome());
-            jcbConjunto2.addItem(uniao.getNome());
-            JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(uniao));
-        } else {
-            JOptionPane.showMessageDialog(null, "Conjunto já existente!");
-        }
-
+        jcbConjunto1.addItem(uniao.getNome());
+        jcbConjunto2.addItem(uniao.getNome());
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(uniao));
     }//GEN-LAST:event_jbUniaoActionPerformed
 
     private void jcbConjunto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbConjunto1ActionPerformed
@@ -545,14 +540,9 @@ public class main extends javax.swing.JFrame {
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
         Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
         Conjunto intersecao = StorageSession.intersecaoConjuntos(obj1, obj2);
-
-        if (StorageSession.addItemComboBox(intersecao.getNome(), StorageSession.getComboItens())) {
-            jcbConjunto1.addItem(intersecao.getNome());
-            jcbConjunto2.addItem(intersecao.getNome());
-            JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
-        } else {
-            JOptionPane.showMessageDialog(null, "Conjunto já existente!");
-        }
+        jcbConjunto1.addItem(intersecao.getNome());
+        jcbConjunto2.addItem(intersecao.getNome());
+        JOptionPane.showMessageDialog(null, StorageSession.imprimeConjunto(intersecao));
     }//GEN-LAST:event_jbIntersecaoActionPerformed
 
     private void jbContidoOuIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContidoOuIgualActionPerformed
