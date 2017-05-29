@@ -276,12 +276,32 @@ public class main extends javax.swing.JFrame {
         });
 
         btnMenorQue.setText("<");
+        btnMenorQue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenorQueActionPerformed(evt);
+            }
+        });
 
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
 
         btnRaiz.setText("√x");
+        btnRaiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaizActionPerformed(evt);
+            }
+        });
 
         btnQuadrado.setText("x²");
+        btnQuadrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuadradoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -631,6 +651,39 @@ public class main extends javax.swing.JFrame {
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());
     }//GEN-LAST:event_btnMaiorQueActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        String nome = StorageSession.igualA(obj1, obj2);
+        jcbConjunto1.addItem(nome);
+        jcbConjunto2.addItem(nome);
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());
+    }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnMenorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenorQueActionPerformed
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        String nome = StorageSession.menorQue(obj1, obj2);
+        jcbConjunto1.addItem(nome);
+        jcbConjunto2.addItem(nome);
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnMenorQueActionPerformed
+
+    private void btnQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuadradoActionPerformed
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        String nome = StorageSession.quadradoDe(obj1, obj2);
+        jcbConjunto1.addItem(nome);
+        jcbConjunto2.addItem(nome);
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnQuadradoActionPerformed
+
+    private void btnRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizActionPerformed
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        String nome = StorageSession.raizDe(obj1, obj2);
+        jcbConjunto1.addItem(nome);
+        jcbConjunto2.addItem(nome);
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnRaizActionPerformed
 
     /**
      * @param args the command line arguments

@@ -161,7 +161,7 @@ public class StorageSession {
     }
 
     public static String maiorQue(Conjunto dominio, Conjunto imagem) {
-        String nome = "R >:" + dominio.getNome() + "->" + imagem.getNome();
+        String nome = "> :" + dominio.getNome() + "→" + imagem.getNome();
         Relacao maiorQue = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
@@ -171,67 +171,72 @@ public class StorageSession {
                 }
             }
         }
+        maiorQue.criaNotacao();
         relacoes.add(maiorQue);
         return nome;
     }
 
     public static String menorQue(Conjunto dominio, Conjunto imagem) {
-        String nome = "R <:" + dominio.getNome() + "->" + imagem.getNome();
-        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+        String nome = "< :" + dominio.getNome() + "→" + imagem.getNome();
+        Relacao menorQue = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
             for (Elemento obj2 : imagem.getConjunto()) {
                 if (obj1.getValor() < obj2.getValor()) {
-                    maiorQue.addDupla(obj1, obj2);
+                    menorQue.addDupla(obj1, obj2);
                 }
             }
         }
-        relacoes.add(maiorQue);
+        menorQue.criaNotacao();
+        relacoes.add(menorQue);
         return nome;
     }
 
     public static String igualA(Conjunto dominio, Conjunto imagem) {
-        String nome = "R =:" + dominio.getNome() + "->" + imagem.getNome();
-        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+        String nome = "= :" + dominio.getNome() + "→" + imagem.getNome();
+        Relacao igualA = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
             for (Elemento obj2 : imagem.getConjunto()) {
                 if (obj1.getValor() == obj2.getValor()) {
-                    maiorQue.addDupla(obj1, obj2);
+                    igualA.addDupla(obj1, obj2);
                 }
             }
         }
-        relacoes.add(maiorQue);
+        igualA.criaNotacao();
+        relacoes.add(igualA);
         return nome;
     }
 
     public static String quadradoDe(Conjunto dominio, Conjunto imagem) {
-        String nome = "R x²:" + dominio.getNome() + "->" + imagem.getNome();
-        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+        String nome = "x² :" + dominio.getNome() + "→" + imagem.getNome();
+        Relacao quadradoDe = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
             for (Elemento obj2 : imagem.getConjunto()) {
                 if (obj1.getValor() == (obj2.getValor() * obj2.getValor())) {
-                    maiorQue.addDupla(obj1, obj2);
+                    quadradoDe.addDupla(obj1, obj2);
                 }
             }
         }
-        relacoes.add(maiorQue);
+        quadradoDe.criaNotacao();
+        relacoes.add(quadradoDe);
         return nome;
     }
 
     public static String raizDe(Conjunto dominio, Conjunto imagem) {
-        String nome = "R √x:" + dominio.getNome() + "->" + imagem.getNome();
-        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+        String nome = "√x :" + dominio.getNome() + "→" + imagem.getNome();
+        Relacao raizDe = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
             for (Elemento obj2 : imagem.getConjunto()) {
                 if (obj1.getValor() == Math.sqrt(obj2.getValor())) {
-                    maiorQue.addDupla(obj1, obj2);
+                    raizDe.addDupla(obj1, obj2);
                 }
             }
         }
-        relacoes.add(maiorQue);
+        raizDe.criaNotacao();
+        relacoes.add(raizDe);
         return nome;
     }
 
@@ -312,11 +317,6 @@ public class StorageSession {
         return cont;
     }
 
-    public static void resetStorage() {
-        elementos = new ArrayList<>();
-        conjuntos = new ArrayList<>();
-    }
-
     public static Relacao getRelacaoPorNome(String nome) {
         for (Relacao obj : relacoes) {
             if (obj.getNome().equals(nome)) {
@@ -324,5 +324,10 @@ public class StorageSession {
             }
         }
         return null;
+    }
+
+    public static void resetStorage() {
+        elementos = new ArrayList<>();
+        conjuntos = new ArrayList<>();
     }
 }

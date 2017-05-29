@@ -56,4 +56,15 @@ public class Relacao {
         Conjunto dupla = new Conjunto(ele1, ele2);
         this.produto.add(dupla);
     }
+
+    public void criaNotacao() {
+        String notacao = this.nome + " = {";
+        for (Conjunto obj : this.produto) {
+            ArrayList<Elemento> elementos = obj.getConjunto();
+            notacao += " <" + elementos.get(0).getValor() + "," + elementos.get(1).getValor() + ">,";
+        }
+        notacao = notacao.substring(0, notacao.length() - 1);
+        notacao += " }";
+        this.notacao = notacao;
+    }
 }

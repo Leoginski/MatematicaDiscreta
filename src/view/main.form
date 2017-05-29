@@ -308,21 +308,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenorQueActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIgual">
       <Properties>
         <Property name="text" type="java.lang.String" value="="/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIgualActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRaiz">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x221a;x"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRaizActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnQuadrado">
       <Properties>
         <Property name="text" type="java.lang.String" value="x&#xb2;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuadradoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
