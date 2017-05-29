@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Conjunto;
 import model.Elemento;
+import model.Relacao;
 
 /**
  *
@@ -19,6 +20,15 @@ public class StorageSession {
     private static ArrayList<Elemento> elementos = new ArrayList<>();
     private static ArrayList<Conjunto> conjuntos = new ArrayList<>();
     private static ArrayList<String> comboItens = new ArrayList<>();
+    private static ArrayList<Relacao> relacoes = new ArrayList<>();
+
+    public static ArrayList<Relacao> getRelacoes() {
+        return relacoes;
+    }
+
+    public static void setRelacoes(ArrayList<Relacao> relacoes) {
+        StorageSession.relacoes = relacoes;
+    }
 
     public static ArrayList<Elemento> getElementos() {
         return elementos;
@@ -150,6 +160,81 @@ public class StorageSession {
         return produto;
     }
 
+    public static String maiorQue(Conjunto dominio, Conjunto imagem) {
+        String nome = "R >:" + dominio.getNome() + "->" + imagem.getNome();
+        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+
+        for (Elemento obj1 : dominio.getConjunto()) {
+            for (Elemento obj2 : imagem.getConjunto()) {
+                if (obj1.getValor() > obj2.getValor()) {
+                    maiorQue.addDupla(obj1, obj2);
+                }
+            }
+        }
+        relacoes.add(maiorQue);
+        return nome;
+    }
+
+    public static String menorQue(Conjunto dominio, Conjunto imagem) {
+        String nome = "R <:" + dominio.getNome() + "->" + imagem.getNome();
+        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+
+        for (Elemento obj1 : dominio.getConjunto()) {
+            for (Elemento obj2 : imagem.getConjunto()) {
+                if (obj1.getValor() < obj2.getValor()) {
+                    maiorQue.addDupla(obj1, obj2);
+                }
+            }
+        }
+        relacoes.add(maiorQue);
+        return nome;
+    }
+
+    public static String igualA(Conjunto dominio, Conjunto imagem) {
+        String nome = "R =:" + dominio.getNome() + "->" + imagem.getNome();
+        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+
+        for (Elemento obj1 : dominio.getConjunto()) {
+            for (Elemento obj2 : imagem.getConjunto()) {
+                if (obj1.getValor() == obj2.getValor()) {
+                    maiorQue.addDupla(obj1, obj2);
+                }
+            }
+        }
+        relacoes.add(maiorQue);
+        return nome;
+    }
+
+    public static String quadradoDe(Conjunto dominio, Conjunto imagem) {
+        String nome = "R x²:" + dominio.getNome() + "->" + imagem.getNome();
+        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+
+        for (Elemento obj1 : dominio.getConjunto()) {
+            for (Elemento obj2 : imagem.getConjunto()) {
+                if (obj1.getValor() == (obj2.getValor() * obj2.getValor())) {
+                    maiorQue.addDupla(obj1, obj2);
+                }
+            }
+        }
+        relacoes.add(maiorQue);
+        return nome;
+    }
+
+    public static String raizDe(Conjunto dominio, Conjunto imagem) {
+        String nome = "R √x:" + dominio.getNome() + "->" + imagem.getNome();
+        Relacao maiorQue = new Relacao(nome, dominio, imagem);
+
+        for (Elemento obj1 : dominio.getConjunto()) {
+            for (Elemento obj2 : imagem.getConjunto()) {
+                if (obj1.getValor() == Math.sqrt(obj2.getValor())) {
+                    maiorQue.addDupla(obj1, obj2);
+                }
+            }
+        }
+        relacoes.add(maiorQue);
+        return nome;
+    }
+
     public static ArrayList<String> getNomesConjuntos() {
         ArrayList<String> allNomes = new ArrayList<>();
         for (Conjunto obj : conjuntos) {
@@ -230,5 +315,14 @@ public class StorageSession {
     public static void resetStorage() {
         elementos = new ArrayList<>();
         conjuntos = new ArrayList<>();
+    }
+
+    public static Relacao getRelacaoPorNome(String nome) {
+        for (Relacao obj : relacoes) {
+            if (obj.getNome().equals(nome)) {
+                return obj;
+            }
+        }
+        return null;
     }
 }

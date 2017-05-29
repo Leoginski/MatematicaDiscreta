@@ -27,6 +27,11 @@ public class Conjunto {
         this.conjunto = conjunto;
     }
 
+    Conjunto(Elemento ele1, Elemento ele2) {
+        this.conjunto.add(ele1);
+        this.conjunto.add(ele2);
+    }
+
     public String getNome() {
         return this.nome;
     }
