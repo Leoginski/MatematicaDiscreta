@@ -153,10 +153,10 @@ public class main extends javax.swing.JFrame {
         jlSeta = new javax.swing.JLabel();
         lblOperacoes1 = new javax.swing.JLabel();
         btnMaiorQue = new javax.swing.JButton();
-        btnMenorQue = new javax.swing.JButton();
         btnIgual = new javax.swing.JButton();
         btnRaiz = new javax.swing.JButton();
         btnQuadrado = new javax.swing.JButton();
+        btnMenorQue = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -176,7 +176,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        lblRelacoes.setText("Relações");
+        lblRelacoes.setText("Relações:");
 
         jbPertence.setText("∈");
         jbPertence.addActionListener(new java.awt.event.ActionListener() {
@@ -275,13 +275,6 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        btnMenorQue.setText("<");
-        btnMenorQue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenorQueActionPerformed(evt);
-            }
-        });
-
         btnIgual.setText("=");
         btnIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +296,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        btnMenorQue.setText("<");
+        btnMenorQue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenorQueActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,59 +311,62 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jlSeta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbPertence)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jbArquivo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbNaoPertence)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbUniao))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lbContidoPropriamente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbNaoContidoPropriamente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbProdutoCartesiano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jbContidoOuIgual)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbNaoContidoOuIgual)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jbIntersecao))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jtfArquivo))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(btnMaiorQue)
-                                .addGap(14, 14, 14)
-                                .addComponent(btnIgual)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnMenorQue))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(btnQuadrado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnRaiz))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jbArquivo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblOperacoes1)
-                                    .addGap(86, 86, 86)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblRelacoes)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jlSeta)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jbPertence)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jbNaoPertence)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jbUniao))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(lbContidoPropriamente)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lbNaoContidoPropriamente)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lbProdutoCartesiano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(jbContidoOuIgual)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(lbNaoContidoOuIgual)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jbIntersecao))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(35, 35, 35)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(lblRelacoes)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(btnMaiorQue)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(btnIgual)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnMenorQue))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnRaiz)
+                                                .addGap(15, 15, 15))))
+                                    .addComponent(lblOperacoes1))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,12 +375,12 @@ public class main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbArquivo)
                     .addComponent(jtfArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlSeta)
                     .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOperacoes1)
                     .addComponent(lblRelacoes))
@@ -387,8 +390,8 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jbNaoPertence)
                     .addComponent(jbUniao)
                     .addComponent(btnMaiorQue)
-                    .addComponent(btnMenorQue)
-                    .addComponent(btnIgual))
+                    .addComponent(btnIgual)
+                    .addComponent(btnMenorQue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbContidoOuIgual)
@@ -649,7 +652,7 @@ public class main extends javax.swing.JFrame {
         String nome = StorageSession.maiorQue(obj1, obj2);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
-        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnMaiorQueActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
@@ -658,16 +661,8 @@ public class main extends javax.swing.JFrame {
         String nome = StorageSession.igualA(obj1, obj2);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
-        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnIgualActionPerformed
-
-    private void btnMenorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenorQueActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.menorQue(obj1, obj2);
-        jcbConjunto1.addItem(nome);
-        jcbConjunto2.addItem(nome);
-        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnMenorQueActionPerformed
 
     private void btnQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuadradoActionPerformed
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
@@ -684,6 +679,15 @@ public class main extends javax.swing.JFrame {
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnRaizActionPerformed
+
+    private void btnMenorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenorQueActionPerformed
+        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+        String nome = StorageSession.menorQue(obj1, obj2);
+        jcbConjunto1.addItem(nome);
+        jcbConjunto2.addItem(nome);
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
+    }//GEN-LAST:event_btnMenorQueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -723,7 +727,7 @@ public class main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIgual;
     private javax.swing.JButton btnMaiorQue;
-    private javax.swing.JButton btnMenorQue;
+    private javax.swing.JToggleButton btnMenorQue;
     private javax.swing.JButton btnQuadrado;
     private javax.swing.JButton btnRaiz;
     private javax.swing.JButton jbArquivo;

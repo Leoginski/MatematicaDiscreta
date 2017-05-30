@@ -18,7 +18,7 @@ public class Relacao {
     Conjunto imagem = new Conjunto();
     ArrayList<Conjunto> produto = new ArrayList<>();
     String notacao;
-    ArrayList<String> classificacao = new ArrayList<>();
+    String classificacao = "";
 
     public Relacao() {
     }
@@ -71,9 +71,94 @@ public class Relacao {
 
     public boolean isFuncional() {
         for (Conjunto obj1 : this.produto) {
+            int cont = 0;
             ArrayList<Elemento> elementos1 = obj1.getConjunto();
-            int elemento = elementos1.get(0).getValor();
+            int elemento1 = elementos1.get(0).getValor();
+            for (Conjunto obj2 : this.produto) {
+                ArrayList<Elemento> elementos2 = obj2.getConjunto();
+                int elemento2 = elementos2.get(0).getValor();
+                if (elemento1 == elemento2) {
+                    cont++;
+                }
+            }
+            if (cont > 1) {
+                return false;
+            }
         }
         return true;
+    }
+
+    public boolean isInjetora() {
+        for (Conjunto obj1 : this.produto) {
+            int cont = 0;
+            ArrayList<Elemento> elementos1 = obj1.getConjunto();
+            int elemento1 = elementos1.get(1).getValor();
+            for (Conjunto obj2 : this.produto) {
+                ArrayList<Elemento> elementos2 = obj2.getConjunto();
+                int elemento2 = elementos2.get(1).getValor();
+                if (elemento1 == elemento2) {
+                    cont++;
+                }
+            }
+            if (cont > 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isTotal() {
+        int cont = 0;
+        for (Elemento obj1 : this.dominio.getConjunto()) {
+            int elemento1 = obj1.getValor();
+            for (Conjunto obj2 : this.produto) {
+                ArrayList<Elemento> elementos2 = obj2.getConjunto();
+                int elemento2 = elementos2.get(0).getValor();
+                if (elemento1 == elemento2) {
+                    cont++;
+                    break;
+                }
+            }
+        }
+        if (cont == this.dominio.getConjunto().size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSobrejetora() {
+        int cont = 0;
+        for (Elemento obj1 : this.imagem.getConjunto()) {
+            int elemento1 = obj1.getValor();
+            for (Conjunto obj2 : this.produto) {
+                ArrayList<Elemento> elementos2 = obj2.getConjunto();
+                int elemento2 = elementos2.get(1).getValor();
+                if (elemento1 == elemento2) {
+                    cont++;
+                    break;
+                }
+            }
+        }
+        if (cont == this.imagem.getConjunto().size()) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getClassificacoes() {
+        this.classificacao = "";
+        if (this.isFuncional()) {
+            this.classificacao += "[Funcional]";
+        }
+        if (this.isInjetora()) {
+            this.classificacao += "[Injetora]";
+        }
+        if (this.isTotal()) {
+            this.classificacao += "[Total]";
+        }
+        if (this.isSobrejetora()) {
+            this.classificacao += "[Sobrejetora]";
+        }
+        return this.classificacao;
     }
 }
