@@ -670,7 +670,8 @@ public class main extends javax.swing.JFrame {
         String nome = StorageSession.quadradoDe(obj1, obj2);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
-        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnQuadradoActionPerformed
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
+    }//GEN-LAST:event_btnQuadradoActionPerformed
 
     private void btnRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizActionPerformed
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
@@ -678,7 +679,8 @@ public class main extends javax.swing.JFrame {
         String nome = StorageSession.raizDe(obj1, obj2);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
-        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao());    }//GEN-LAST:event_btnRaizActionPerformed
+        JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
+    }//GEN-LAST:event_btnRaizActionPerformed
 
     private void btnMenorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenorQueActionPerformed
         Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());

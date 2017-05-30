@@ -146,7 +146,9 @@ public class Relacao {
     }
 
     public String getClassificacoes() {
+
         this.classificacao = "";
+
         if (this.isFuncional()) {
             this.classificacao += "[Funcional]";
         }
@@ -158,6 +160,18 @@ public class Relacao {
         }
         if (this.isSobrejetora()) {
             this.classificacao += "[Sobrejetora]";
+        }
+
+        this.classificacao += "\n";
+
+        if (this.isTotal() && this.isInjetora()) {
+            this.classificacao += "[Monomorfismo]";
+        }
+        if (this.isFuncional() && this.isSobrejetora()) {
+            this.classificacao += "[Epiformismo]";
+        }
+        if (this.isFuncional() && this.isSobrejetora() && this.isTotal() && this.isInjetora()) {
+            this.classificacao += "\n logo: Isomorfismo";
         }
         return this.classificacao;
     }
