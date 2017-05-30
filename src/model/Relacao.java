@@ -18,6 +18,7 @@ public class Relacao {
     Conjunto imagem = new Conjunto();
     ArrayList<Conjunto> produto = new ArrayList<>();
     String notacao;
+    ArrayList<String> classificacao = new ArrayList<>();
 
     public Relacao() {
     }
@@ -66,5 +67,13 @@ public class Relacao {
         notacao = notacao.substring(0, notacao.length() - 1);
         notacao += " }";
         this.notacao = notacao;
+    }
+
+    public boolean isFuncional() {
+        for (Conjunto obj1 : this.produto) {
+            ArrayList<Elemento> elementos1 = obj1.getConjunto();
+            int elemento = elementos1.get(0).getValor();
+        }
+        return true;
     }
 }
