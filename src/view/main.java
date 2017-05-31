@@ -585,6 +585,7 @@ public class main extends javax.swing.JFrame {
             obj2 = rel2.getImagemRelacao();
             nome1 = rel1.getNome();
             nome2 = rel2.getNome();
+            relacao = true;
         }
         String nome = StorageSession.igualA(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
@@ -610,6 +611,7 @@ public class main extends javax.swing.JFrame {
             obj2 = rel2.getImagemRelacao();
             nome1 = rel1.getNome();
             nome2 = rel2.getNome();
+            relacao = true;
         }
         String nome = StorageSession.quadradoDe(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
@@ -635,6 +637,7 @@ public class main extends javax.swing.JFrame {
             obj2 = rel2.getImagemRelacao();
             nome1 = rel1.getNome();
             nome2 = rel2.getNome();
+            relacao = true;
         }
         String nome = StorageSession.raizDe(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
@@ -660,6 +663,7 @@ public class main extends javax.swing.JFrame {
             obj2 = rel2.getImagemRelacao();
             nome1 = rel1.getNome();
             nome2 = rel2.getNome();
+            relacao = true;
         }
         String nome = StorageSession.menorQue(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
@@ -708,20 +712,23 @@ public class main extends javax.swing.JFrame {
 
         int aux = 0;
 
-        //1Pertinencia: elemento -> conjunto
-        //2 Tudo -Pertinencia: conjunto -> conjunto
-        //3 Relacao: relacao -> relacao
         if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraConjunto(select2) != null) {
             aux = 1;
-            //1Pertinencia: elemento -> conjunto
+            //1 Pertinencia: elemento -> conjunto
         } else {
-
             if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraConjunto(select2) != null) {
                 aux = 2;
-                //2 Tudo -Pertinencia: conjunto -> conjunto
+                //2 Tudo Conjunto: conjunto -> conjunto
             } else {
-                aux = 3;
-                //3 Relacao: relacao -> relacao
+                if ((StorageSession.encontraElemento(select1) != null && StorageSession.encontraElemento(select2) != null) || (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraElemento(select2) != null)) {
+                    aux = 4; //4 desabilita tudo
+                } else {
+                    if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraRelacao(select2) != null) {
+                        aux = 3; //3 Relacao: relacao -> relacao
+                    } else {
+                        aux = 5; // 5 default
+                    }
+                }
             }
         }
 
