@@ -173,6 +173,7 @@ public class Relacao {
         if (this.isFuncional() && this.isSobrejetora() && this.isTotal() && this.isInjetora()) {
             this.classificacao += "\n logo: Isomorfismo";
         }
+
         return this.classificacao;
     }
 }
