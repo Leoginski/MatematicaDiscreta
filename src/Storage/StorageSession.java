@@ -58,6 +58,15 @@ public class StorageSession {
 
     public static Elemento encontraElemento(String nome) {
         for (Elemento obj : elementos) {
+            if (obj.getNome().equalsIgnoreCase(nome)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    public static Relacao encontraRelacao(String nome) {
+        for (Relacao obj : relacoes) {
             if (obj.getNome().equals(nome)) {
                 return obj;
             }

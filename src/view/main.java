@@ -53,68 +53,8 @@ public class main extends javax.swing.JFrame {
         jcbConjunto1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
-                    Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
-                    String select1 = (String) jcbConjunto1.getSelectedItem();
-                    String select2 = (String) jcbConjunto2.getSelectedItem();
-                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
-                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
+                    validaBotoes();
 
-                    Pattern acharRelacao = Pattern.compile(":");
-                    String relacao1 = (String) jcbConjunto1.getSelectedItem();
-                    String relacao2 = (String) jcbConjunto2.getSelectedItem();
-                    Matcher acharRelacaoMatcher1 = acharRelacao.matcher(relacao1);
-                    Matcher acharRelacaoMatcher2 = acharRelacao.matcher(relacao2);
-
-                    if (acharRelacaoMatcher1.find() && acharRelacaoMatcher2.find()) {
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
-                        jbUniao.setEnabled(false);
-                        jbIntersecao.setEnabled(false);
-                        jbContidoOuIgual.setEnabled(false);
-                        lbNaoContidoOuIgual.setEnabled(false);
-                        lbContidoPropriamente.setEnabled(false);
-                        lbNaoContidoPropriamente.setEnabled(false);
-                        lbProdutoCartesiano.setEnabled(false);
-                        btnMaiorQue.setEnabled(true);
-                        btnMenorQue.setEnabled(true);
-                        btnIgual.setEnabled(true);
-                        btnQuadrado.setEnabled(true);
-                        btnRaiz.setEnabled(true);
-                    } else {
-                        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find() && !(acharRelacaoMatcher1.find()) && !(acharRelacaoMatcher2.find())) {
-                            jbPertence.setEnabled(false);
-                            jbNaoPertence.setEnabled(false);
-                            jbUniao.setEnabled(true);
-                            jbIntersecao.setEnabled(true);
-                            jbContidoOuIgual.setEnabled(true);
-                            lbNaoContidoOuIgual.setEnabled(true);
-                            lbContidoPropriamente.setEnabled(true);
-                            lbNaoContidoPropriamente.setEnabled(true);
-                            lbProdutoCartesiano.setEnabled(true);
-                            btnMaiorQue.setEnabled(true);
-                            btnMenorQue.setEnabled(true);
-                            btnIgual.setEnabled(true);
-                            btnQuadrado.setEnabled(true);
-                            btnRaiz.setEnabled(true);
-                        } else {
-                            btnMaiorQue.setEnabled(false);
-                            btnMenorQue.setEnabled(false);
-                            btnIgual.setEnabled(false);
-                            btnQuadrado.setEnabled(false);
-                            btnRaiz.setEnabled(false);
-                            if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find() || acharConjuntoMatcher1.find() && !(acharConjuntoMatcher2.find())) {
-                                jbUniao.setEnabled(false);
-                                jbIntersecao.setEnabled(false);
-                                jbContidoOuIgual.setEnabled(false);
-                                lbNaoContidoOuIgual.setEnabled(false);
-                                lbContidoPropriamente.setEnabled(false);
-                                lbNaoContidoPropriamente.setEnabled(false);
-                                lbProdutoCartesiano.setEnabled(false);
-                                jbPertence.setEnabled(true);
-                                jbNaoPertence.setEnabled(true);
-                            }
-                        }
-                    }
                 }
 
             }
@@ -123,68 +63,7 @@ public class main extends javax.swing.JFrame {
         jcbConjunto2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
-                    Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
-                    String select1 = (String) jcbConjunto1.getSelectedItem();
-                    String select2 = (String) jcbConjunto2.getSelectedItem();
-                    Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
-                    Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
-
-                    Pattern acharRelacao = Pattern.compile(":");
-                    String relacao1 = (String) jcbConjunto1.getSelectedItem();
-                    String relacao2 = (String) jcbConjunto2.getSelectedItem();
-                    Matcher acharRelacaoMatcher1 = acharRelacao.matcher(relacao1);
-                    Matcher acharRelacaoMatcher2 = acharRelacao.matcher(relacao2);
-
-                    if (acharRelacaoMatcher1.find() && acharRelacaoMatcher2.find()) {
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
-                        jbUniao.setEnabled(false);
-                        jbIntersecao.setEnabled(false);
-                        jbContidoOuIgual.setEnabled(false);
-                        lbNaoContidoOuIgual.setEnabled(false);
-                        lbContidoPropriamente.setEnabled(false);
-                        lbNaoContidoPropriamente.setEnabled(false);
-                        lbProdutoCartesiano.setEnabled(false);
-                        btnMaiorQue.setEnabled(true);
-                        btnMenorQue.setEnabled(true);
-                        btnIgual.setEnabled(true);
-                        btnQuadrado.setEnabled(true);
-                        btnRaiz.setEnabled(true);
-                    } else {
-                        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find() && !(acharRelacaoMatcher1.find()) && !(acharRelacaoMatcher2.find())) {
-                            jbPertence.setEnabled(false);
-                            jbNaoPertence.setEnabled(false);
-                            jbUniao.setEnabled(true);
-                            jbIntersecao.setEnabled(true);
-                            jbContidoOuIgual.setEnabled(true);
-                            lbNaoContidoOuIgual.setEnabled(true);
-                            lbContidoPropriamente.setEnabled(true);
-                            lbNaoContidoPropriamente.setEnabled(true);
-                            lbProdutoCartesiano.setEnabled(true);
-                            btnMaiorQue.setEnabled(true);
-                            btnMenorQue.setEnabled(true);
-                            btnIgual.setEnabled(true);
-                            btnQuadrado.setEnabled(true);
-                            btnRaiz.setEnabled(true);
-                        } else {
-                            btnMaiorQue.setEnabled(false);
-                            btnMenorQue.setEnabled(false);
-                            btnIgual.setEnabled(false);
-                            btnQuadrado.setEnabled(false);
-                            btnRaiz.setEnabled(false);
-                            if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find() || acharConjuntoMatcher1.find() && !(acharConjuntoMatcher2.find())) {
-                                jbUniao.setEnabled(false);
-                                jbIntersecao.setEnabled(false);
-                                jbContidoOuIgual.setEnabled(false);
-                                lbNaoContidoOuIgual.setEnabled(false);
-                                lbContidoPropriamente.setEnabled(false);
-                                lbNaoContidoPropriamente.setEnabled(false);
-                                lbProdutoCartesiano.setEnabled(false);
-                                jbPertence.setEnabled(true);
-                                jbNaoPertence.setEnabled(true);
-                            }
-                        }
-                    }
+                    validaBotoes();
                 }
             }
         });
@@ -556,48 +435,6 @@ public class main extends javax.swing.JFrame {
             jcbConjunto1.addItem(obj);
             jcbConjunto2.addItem(obj);
         }
-
-        jcbConjunto1.setSelectedIndex(0);
-        jcbConjunto2.setSelectedIndex(0);
-        Pattern acharConjunto = Pattern.compile("[A-Z∪∩]");
-        String select1 = (String) jcbConjunto1.getSelectedItem();
-        Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
-        String select2 = (String) jcbConjunto2.getSelectedItem();
-        Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
-
-        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
-            jbPertence.setEnabled(false);
-            jbNaoPertence.setEnabled(false);
-            jbUniao.setEnabled(true);
-            jbIntersecao.setEnabled(true);
-            jbContidoOuIgual.setEnabled(true);
-            lbNaoContidoOuIgual.setEnabled(true);
-            lbContidoPropriamente.setEnabled(true);
-            lbNaoContidoPropriamente.setEnabled(true);
-            lbProdutoCartesiano.setEnabled(true);
-        } else {
-            jbPertence.setEnabled(false);
-            jbNaoPertence.setEnabled(false);
-            jbUniao.setEnabled(false);
-            jbIntersecao.setEnabled(false);
-            jbContidoOuIgual.setEnabled(false);
-            lbNaoContidoOuIgual.setEnabled(false);
-            lbContidoPropriamente.setEnabled(false);
-            lbNaoContidoPropriamente.setEnabled(false);
-            lbProdutoCartesiano.setEnabled(false);
-        }
-
-        if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
-            jbPertence.setEnabled(true);
-            jbNaoPertence.setEnabled(true);
-            jbUniao.setEnabled(false);
-            jbIntersecao.setEnabled(false);
-            jbContidoOuIgual.setEnabled(false);
-            lbNaoContidoOuIgual.setEnabled(false);
-            lbContidoPropriamente.setEnabled(false);
-            lbNaoContidoPropriamente.setEnabled(false);
-            lbProdutoCartesiano.setEnabled(false);
-        }
     }//GEN-LAST:event_jbArquivoActionPerformed
 
     private void jtfArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfArquivoActionPerformed
@@ -867,6 +704,253 @@ public class main extends javax.swing.JFrame {
         });
     }
 
+    public void validaBotoes() {
+        String select1 = (String) jcbConjunto1.getSelectedItem();
+        String select2 = (String) jcbConjunto2.getSelectedItem();
+
+        int aux = 0;
+
+        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraConjunto(select2) != null) {
+            aux = 6;
+        } else {
+            aux = 12;
+        }
+
+        if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraElemento(select2) != null) {
+            aux = 1;
+        }
+
+        if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraConjunto(select2) != null) {
+            aux = 2;
+        }
+
+        if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraRelacao(select2) != null) {
+            aux = 3;
+        }
+
+        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraElemento(select2) != null) {
+            aux = 4;
+        }
+
+        if (StorageSession.encontraRelacao(select2) != null && StorageSession.encontraElemento(select1) != null) {
+            aux = 5;
+        }
+
+        if (StorageSession.encontraConjunto(select2) != null && StorageSession.encontraElemento(select1) != null) {
+            aux = 7;
+        }
+
+        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraRelacao(select2) != null) {
+            aux = 8;
+        }
+
+        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraConjunto(select2) != null) {
+            aux = 9;
+        }
+
+        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraElemento(select2) != null) {
+            aux = 10;
+        }
+
+        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraConjunto(select2) != null) {
+            aux = 11;
+        }
+
+        switch (aux) {
+            case 1:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 2:
+                jbPertence.setEnabled(true);
+                jbNaoPertence.setEnabled(true);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 3:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 4:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 5:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 6:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(true);
+                jbIntersecao.setEnabled(true);
+                jbContidoOuIgual.setEnabled(true);
+                lbNaoContidoOuIgual.setEnabled(true);
+                lbContidoPropriamente.setEnabled(true);
+                lbNaoContidoPropriamente.setEnabled(true);
+                lbProdutoCartesiano.setEnabled(true);
+                btnMaiorQue.setEnabled(true);
+                btnMenorQue.setEnabled(true);
+                btnIgual.setEnabled(true);
+                btnQuadrado.setEnabled(true);
+                btnRaiz.setEnabled(true);
+                break;
+            case 7:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 8:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 9:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 10:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 11:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
+                break;
+            case 12:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(true);
+                btnMenorQue.setEnabled(true);
+                btnIgual.setEnabled(true);
+                btnQuadrado.setEnabled(true);
+                btnRaiz.setEnabled(true);
+                break;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIgual;
     private javax.swing.JButton btnMaiorQue;
