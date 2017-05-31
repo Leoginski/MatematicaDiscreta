@@ -54,9 +54,7 @@ public class main extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent event) {
                 if (!(jcbConjunto1.getSelectedItem() == null) && !(jcbConjunto2.getSelectedItem() == null)) {
                     validaBotoes();
-
                 }
-
             }
 
         });
@@ -710,70 +708,25 @@ public class main extends javax.swing.JFrame {
 
         int aux = 0;
 
-        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraConjunto(select2) != null) {
-            aux = 6;
-        } else {
-            aux = 12;
-        }
-
-        if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraElemento(select2) != null) {
-            aux = 1;
-        }
-
+        //1Pertinencia: elemento -> conjunto
+        //2 Tudo -Pertinencia: conjunto -> conjunto
+        //3 Relacao: relacao -> relacao
         if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraConjunto(select2) != null) {
-            aux = 2;
-        }
+            aux = 1;
+            //1Pertinencia: elemento -> conjunto
+        } else {
 
-        if (StorageSession.encontraElemento(select1) != null && StorageSession.encontraRelacao(select2) != null) {
-            aux = 3;
-        }
-
-        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraElemento(select2) != null) {
-            aux = 4;
-        }
-
-        if (StorageSession.encontraRelacao(select2) != null && StorageSession.encontraElemento(select1) != null) {
-            aux = 5;
-        }
-
-        if (StorageSession.encontraConjunto(select2) != null && StorageSession.encontraElemento(select1) != null) {
-            aux = 7;
-        }
-
-        if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraRelacao(select2) != null) {
-            aux = 8;
-        }
-
-        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraConjunto(select2) != null) {
-            aux = 9;
-        }
-
-        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraElemento(select2) != null) {
-            aux = 10;
-        }
-
-        if (StorageSession.encontraRelacao(select1) != null && StorageSession.encontraConjunto(select2) != null) {
-            aux = 11;
+            if (StorageSession.encontraConjunto(select1) != null && StorageSession.encontraConjunto(select2) != null) {
+                aux = 2;
+                //2 Tudo -Pertinencia: conjunto -> conjunto
+            } else {
+                aux = 3;
+                //3 Relacao: relacao -> relacao
+            }
         }
 
         switch (aux) {
             case 1:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 2:
                 jbPertence.setEnabled(true);
                 jbNaoPertence.setEnabled(true);
                 jbUniao.setEnabled(false);
@@ -789,55 +742,7 @@ public class main extends javax.swing.JFrame {
                 btnQuadrado.setEnabled(false);
                 btnRaiz.setEnabled(false);
                 break;
-            case 3:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 4:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 5:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 6:
+            case 2:
                 jbPertence.setEnabled(false);
                 jbNaoPertence.setEnabled(false);
                 jbUniao.setEnabled(true);
@@ -853,87 +758,7 @@ public class main extends javax.swing.JFrame {
                 btnQuadrado.setEnabled(true);
                 btnRaiz.setEnabled(true);
                 break;
-            case 7:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 8:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 9:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 10:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 11:
-                jbPertence.setEnabled(false);
-                jbNaoPertence.setEnabled(false);
-                jbUniao.setEnabled(false);
-                jbIntersecao.setEnabled(false);
-                jbContidoOuIgual.setEnabled(false);
-                lbNaoContidoOuIgual.setEnabled(false);
-                lbContidoPropriamente.setEnabled(false);
-                lbNaoContidoPropriamente.setEnabled(false);
-                lbProdutoCartesiano.setEnabled(false);
-                btnMaiorQue.setEnabled(false);
-                btnMenorQue.setEnabled(false);
-                btnIgual.setEnabled(false);
-                btnQuadrado.setEnabled(false);
-                btnRaiz.setEnabled(false);
-                break;
-            case 12:
+            case 3:
                 jbPertence.setEnabled(false);
                 jbNaoPertence.setEnabled(false);
                 jbUniao.setEnabled(false);
@@ -948,6 +773,22 @@ public class main extends javax.swing.JFrame {
                 btnIgual.setEnabled(true);
                 btnQuadrado.setEnabled(true);
                 btnRaiz.setEnabled(true);
+                break;
+            default:
+                jbPertence.setEnabled(false);
+                jbNaoPertence.setEnabled(false);
+                jbUniao.setEnabled(false);
+                jbIntersecao.setEnabled(false);
+                jbContidoOuIgual.setEnabled(false);
+                lbNaoContidoOuIgual.setEnabled(false);
+                lbContidoPropriamente.setEnabled(false);
+                lbNaoContidoPropriamente.setEnabled(false);
+                lbProdutoCartesiano.setEnabled(false);
+                btnMaiorQue.setEnabled(false);
+                btnMenorQue.setEnabled(false);
+                btnIgual.setEnabled(false);
+                btnQuadrado.setEnabled(false);
+                btnRaiz.setEnabled(false);
                 break;
         }
     }
