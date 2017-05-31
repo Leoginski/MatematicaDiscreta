@@ -160,8 +160,13 @@ public class StorageSession {
         return produto;
     }
 
-    public static String maiorQue(Conjunto dominio, Conjunto imagem) {
-        String nome = "> :" + dominio.getNome() + "→" + imagem.getNome();
+    public static String maiorQue(Conjunto dominio, Conjunto imagem, String nome1, String nome2, boolean relacao) {
+        String nome = "";
+        if (relacao) {
+            nome = "> :" + nome1 + "☻" + nome2;
+        } else {
+            nome = "(> :" + nome1 + "→" + nome2 + ")";
+        }
         Relacao maiorQue = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
@@ -176,8 +181,13 @@ public class StorageSession {
         return nome;
     }
 
-    public static String menorQue(Conjunto dominio, Conjunto imagem) {
-        String nome = "< :" + dominio.getNome() + "→" + imagem.getNome();
+    public static String menorQue(Conjunto dominio, Conjunto imagem, String nome1, String nome2, boolean relacao) {
+        String nome = "";
+        if (relacao) {
+            nome = "< :" + nome1 + "☻" + nome2;
+        } else {
+            nome = "(< :" + nome1 + "→" + nome2 + ")";
+        }
         Relacao menorQue = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
@@ -192,8 +202,13 @@ public class StorageSession {
         return nome;
     }
 
-    public static String igualA(Conjunto dominio, Conjunto imagem) {
-        String nome = "= :" + dominio.getNome() + "→" + imagem.getNome();
+    public static String igualA(Conjunto dominio, Conjunto imagem, String nome1, String nome2, boolean relacao) {
+        String nome = "";
+        if (relacao) {
+            nome = "= :" + nome1 + "☻" + nome2;
+        } else {
+            nome = "(= :" + nome1 + "→" + nome2 + ")";
+        }
         Relacao igualA = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
@@ -208,8 +223,13 @@ public class StorageSession {
         return nome;
     }
 
-    public static String quadradoDe(Conjunto dominio, Conjunto imagem) {
-        String nome = "x² :" + dominio.getNome() + "→" + imagem.getNome();
+    public static String quadradoDe(Conjunto dominio, Conjunto imagem, String nome1, String nome2, boolean relacao) {
+        String nome = "";
+        if (relacao) {
+            nome = "x² :" + nome1 + "☻" + nome2;
+        } else {
+            nome = "(x² :" + nome1 + "→" + nome2 + ")";
+        }
         Relacao quadradoDe = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {
@@ -224,8 +244,13 @@ public class StorageSession {
         return nome;
     }
 
-    public static String raizDe(Conjunto dominio, Conjunto imagem) {
-        String nome = "√x :" + dominio.getNome() + "→" + imagem.getNome();
+    public static String raizDe(Conjunto dominio, Conjunto imagem, String nome1, String nome2, boolean relacao) {
+        String nome = "";
+        if (relacao) {
+            nome = "√x :" + nome1 + "☻" + nome2;
+        } else {
+            nome = "(√x :" + nome1 + "→" + nome2 + ")";
+        }
         Relacao raizDe = new Relacao(nome, dominio, imagem);
 
         for (Elemento obj1 : dominio.getConjunto()) {

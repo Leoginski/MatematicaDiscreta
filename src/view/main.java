@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import model.Conjunto;
 import model.Elemento;
+import model.Relacao;
 
 /**
  *
@@ -43,6 +44,11 @@ public class main extends javax.swing.JFrame {
         lbContidoPropriamente.setEnabled(false);
         lbNaoContidoPropriamente.setEnabled(false);
         lbProdutoCartesiano.setEnabled(false);
+        btnMaiorQue.setEnabled(false);
+        btnMenorQue.setEnabled(false);
+        btnIgual.setEnabled(false);
+        btnQuadrado.setEnabled(false);
+        btnRaiz.setEnabled(false);
 
         jcbConjunto1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -53,17 +59,13 @@ public class main extends javax.swing.JFrame {
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
                     Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
-                    if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
-                        jbUniao.setEnabled(true);
-                        jbIntersecao.setEnabled(true);
-                        jbContidoOuIgual.setEnabled(true);
-                        lbNaoContidoOuIgual.setEnabled(true);
-                        lbContidoPropriamente.setEnabled(true);
-                        lbNaoContidoPropriamente.setEnabled(true);
-                        lbProdutoCartesiano.setEnabled(true);
-                    } else {
+                    Pattern acharRelacao = Pattern.compile(":");
+                    String relacao1 = (String) jcbConjunto1.getSelectedItem();
+                    String relacao2 = (String) jcbConjunto2.getSelectedItem();
+                    Matcher acharRelacaoMatcher1 = acharRelacao.matcher(relacao1);
+                    Matcher acharRelacaoMatcher2 = acharRelacao.matcher(relacao2);
+
+                    if (acharRelacaoMatcher1.find() && acharRelacaoMatcher2.find()) {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(false);
@@ -73,14 +75,46 @@ public class main extends javax.swing.JFrame {
                         lbContidoPropriamente.setEnabled(false);
                         lbNaoContidoPropriamente.setEnabled(false);
                         lbProdutoCartesiano.setEnabled(false);
-
+                        btnMaiorQue.setEnabled(true);
+                        btnMenorQue.setEnabled(true);
+                        btnIgual.setEnabled(true);
+                        btnQuadrado.setEnabled(true);
+                        btnRaiz.setEnabled(true);
+                    } else {
+                        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find() && !(acharRelacaoMatcher1.find()) && !(acharRelacaoMatcher2.find())) {
+                            jbPertence.setEnabled(false);
+                            jbNaoPertence.setEnabled(false);
+                            jbUniao.setEnabled(true);
+                            jbIntersecao.setEnabled(true);
+                            jbContidoOuIgual.setEnabled(true);
+                            lbNaoContidoOuIgual.setEnabled(true);
+                            lbContidoPropriamente.setEnabled(true);
+                            lbNaoContidoPropriamente.setEnabled(true);
+                            lbProdutoCartesiano.setEnabled(true);
+                            btnMaiorQue.setEnabled(true);
+                            btnMenorQue.setEnabled(true);
+                            btnIgual.setEnabled(true);
+                            btnQuadrado.setEnabled(true);
+                            btnRaiz.setEnabled(true);
+                        } else {
+                            btnMaiorQue.setEnabled(false);
+                            btnMenorQue.setEnabled(false);
+                            btnIgual.setEnabled(false);
+                            btnQuadrado.setEnabled(false);
+                            btnRaiz.setEnabled(false);
+                            if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find() || acharConjuntoMatcher1.find() && !(acharConjuntoMatcher2.find())) {
+                                jbUniao.setEnabled(false);
+                                jbIntersecao.setEnabled(false);
+                                jbContidoOuIgual.setEnabled(false);
+                                lbNaoContidoOuIgual.setEnabled(false);
+                                lbContidoPropriamente.setEnabled(false);
+                                lbNaoContidoPropriamente.setEnabled(false);
+                                lbProdutoCartesiano.setEnabled(false);
+                                jbPertence.setEnabled(true);
+                                jbNaoPertence.setEnabled(true);
+                            }
+                        }
                     }
-
-                    if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
-                        jbPertence.setEnabled(true);
-                        jbNaoPertence.setEnabled(true);
-                    }
-
                 }
 
             }
@@ -95,17 +129,13 @@ public class main extends javax.swing.JFrame {
                     Matcher acharConjuntoMatcher1 = acharConjunto.matcher(select1);
                     Matcher acharConjuntoMatcher2 = acharConjunto.matcher(select2);
 
-                    if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find()) {
-                        jbPertence.setEnabled(false);
-                        jbNaoPertence.setEnabled(false);
-                        jbUniao.setEnabled(true);
-                        jbIntersecao.setEnabled(true);
-                        jbContidoOuIgual.setEnabled(true);
-                        lbNaoContidoOuIgual.setEnabled(true);
-                        lbContidoPropriamente.setEnabled(true);
-                        lbNaoContidoPropriamente.setEnabled(true);
-                        lbProdutoCartesiano.setEnabled(true);
-                    } else {
+                    Pattern acharRelacao = Pattern.compile(":");
+                    String relacao1 = (String) jcbConjunto1.getSelectedItem();
+                    String relacao2 = (String) jcbConjunto2.getSelectedItem();
+                    Matcher acharRelacaoMatcher1 = acharRelacao.matcher(relacao1);
+                    Matcher acharRelacaoMatcher2 = acharRelacao.matcher(relacao2);
+
+                    if (acharRelacaoMatcher1.find() && acharRelacaoMatcher2.find()) {
                         jbPertence.setEnabled(false);
                         jbNaoPertence.setEnabled(false);
                         jbUniao.setEnabled(false);
@@ -115,11 +145,45 @@ public class main extends javax.swing.JFrame {
                         lbContidoPropriamente.setEnabled(false);
                         lbNaoContidoPropriamente.setEnabled(false);
                         lbProdutoCartesiano.setEnabled(false);
-                    }
-
-                    if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find()) {
-                        jbPertence.setEnabled(true);
-                        jbNaoPertence.setEnabled(true);
+                        btnMaiorQue.setEnabled(true);
+                        btnMenorQue.setEnabled(true);
+                        btnIgual.setEnabled(true);
+                        btnQuadrado.setEnabled(true);
+                        btnRaiz.setEnabled(true);
+                    } else {
+                        if (acharConjuntoMatcher1.find() && acharConjuntoMatcher2.find() && !(acharRelacaoMatcher1.find()) && !(acharRelacaoMatcher2.find())) {
+                            jbPertence.setEnabled(false);
+                            jbNaoPertence.setEnabled(false);
+                            jbUniao.setEnabled(true);
+                            jbIntersecao.setEnabled(true);
+                            jbContidoOuIgual.setEnabled(true);
+                            lbNaoContidoOuIgual.setEnabled(true);
+                            lbContidoPropriamente.setEnabled(true);
+                            lbNaoContidoPropriamente.setEnabled(true);
+                            lbProdutoCartesiano.setEnabled(true);
+                            btnMaiorQue.setEnabled(true);
+                            btnMenorQue.setEnabled(true);
+                            btnIgual.setEnabled(true);
+                            btnQuadrado.setEnabled(true);
+                            btnRaiz.setEnabled(true);
+                        } else {
+                            btnMaiorQue.setEnabled(false);
+                            btnMenorQue.setEnabled(false);
+                            btnIgual.setEnabled(false);
+                            btnQuadrado.setEnabled(false);
+                            btnRaiz.setEnabled(false);
+                            if (!(acharConjuntoMatcher1.find()) && acharConjuntoMatcher2.find() || acharConjuntoMatcher1.find() && !(acharConjuntoMatcher2.find())) {
+                                jbUniao.setEnabled(false);
+                                jbIntersecao.setEnabled(false);
+                                jbContidoOuIgual.setEnabled(false);
+                                lbNaoContidoOuIgual.setEnabled(false);
+                                lbContidoPropriamente.setEnabled(false);
+                                lbNaoContidoPropriamente.setEnabled(false);
+                                lbProdutoCartesiano.setEnabled(false);
+                                jbPertence.setEnabled(true);
+                                jbNaoPertence.setEnabled(true);
+                            }
+                        }
                     }
                 }
             }
@@ -159,7 +223,6 @@ public class main extends javax.swing.JFrame {
         btnMenorQue = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jbArquivo.setText("Pesquisar...");
         jbArquivo.addActionListener(new java.awt.event.ActionListener() {
@@ -310,63 +373,59 @@ public class main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jlSeta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbArquivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfArquivo))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbArquivo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfArquivo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jbPertence)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jbNaoPertence)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jbUniao))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(lbContidoPropriamente)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lbNaoContidoPropriamente)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lbProdutoCartesiano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jbContidoOuIgual)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lbNaoContidoOuIgual)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jbIntersecao))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblRelacoes)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jbPertence)
+                                                .addComponent(btnMaiorQue)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jbNaoPertence)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jbUniao))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(lbContidoPropriamente)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(lbNaoContidoPropriamente)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(lbProdutoCartesiano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jbContidoOuIgual)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(lbNaoContidoOuIgual)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jbIntersecao))))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(35, 35, 35)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(lblRelacoes)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnMaiorQue)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(btnIgual)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnMenorQue))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnRaiz)
-                                                .addGap(15, 15, 15))))
-                                    .addComponent(lblOperacoes1))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                                .addComponent(btnIgual)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnMenorQue))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnRaiz)
+                                        .addGap(15, 15, 15))))
+                            .addComponent(lblOperacoes1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jcbConjunto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jlSeta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcbConjunto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +463,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(lbContidoPropriamente)
                     .addComponent(lbNaoContidoPropriamente)
                     .addComponent(lbProdutoCartesiano))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -647,45 +706,127 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_lbProdutoCartesianoActionPerformed
 
     private void btnMaiorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaiorQueActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.maiorQue(obj1, obj2);
+        Conjunto obj1 = new Conjunto();
+        Conjunto obj2 = new Conjunto();
+        String nome1 = "";
+        String nome2 = "";
+        boolean relacao = false;
+        if (StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem()) != null && StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem()) != null) {
+            obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+            obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+            nome1 = obj1.getNome();
+            nome2 = obj2.getNome();
+        } else {
+            Relacao rel1 = StorageSession.getRelacaoPorNome((String) jcbConjunto1.getSelectedItem());
+            Relacao rel2 = StorageSession.getRelacaoPorNome((String) jcbConjunto2.getSelectedItem());
+            obj1 = rel1.getDominioRelacao();
+            obj2 = rel2.getImagemRelacao();
+            nome1 = rel1.getNome();
+            nome2 = rel2.getNome();
+            relacao = true;
+        }
+        String nome = StorageSession.maiorQue(obj1, obj2, nome1, nome2, relacao);
+//        String nome = StorageSession.maiorQue(obj1, obj2);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnMaiorQueActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.igualA(obj1, obj2);
+        Conjunto obj1 = new Conjunto();
+        Conjunto obj2 = new Conjunto();
+        String nome1 = "";
+        String nome2 = "";
+        boolean relacao = false;
+        if (StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem()) != null && StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem()) != null) {
+            obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+            obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+            nome1 = obj1.getNome();
+            nome2 = obj2.getNome();
+        } else {
+            Relacao rel1 = StorageSession.getRelacaoPorNome((String) jcbConjunto1.getSelectedItem());
+            Relacao rel2 = StorageSession.getRelacaoPorNome((String) jcbConjunto2.getSelectedItem());
+            obj1 = rel1.getDominioRelacao();
+            obj2 = rel2.getImagemRelacao();
+            nome1 = rel1.getNome();
+            nome2 = rel2.getNome();
+        }
+        String nome = StorageSession.igualA(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void btnQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuadradoActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.quadradoDe(obj1, obj2);
+        Conjunto obj1 = new Conjunto();
+        Conjunto obj2 = new Conjunto();
+        String nome1 = "";
+        String nome2 = "";
+        boolean relacao = false;
+        if (StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem()) != null && StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem()) != null) {
+            obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+            obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+            nome1 = obj1.getNome();
+            nome2 = obj2.getNome();
+        } else {
+            Relacao rel1 = StorageSession.getRelacaoPorNome((String) jcbConjunto1.getSelectedItem());
+            Relacao rel2 = StorageSession.getRelacaoPorNome((String) jcbConjunto2.getSelectedItem());
+            obj1 = rel1.getDominioRelacao();
+            obj2 = rel2.getImagemRelacao();
+            nome1 = rel1.getNome();
+            nome2 = rel2.getNome();
+        }
+        String nome = StorageSession.quadradoDe(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnQuadradoActionPerformed
 
     private void btnRaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaizActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.raizDe(obj1, obj2);
+        Conjunto obj1 = new Conjunto();
+        Conjunto obj2 = new Conjunto();
+        String nome1 = "";
+        String nome2 = "";
+        boolean relacao = false;
+        if (StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem()) != null && StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem()) != null) {
+            obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+            obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+            nome1 = obj1.getNome();
+            nome2 = obj2.getNome();
+        } else {
+            Relacao rel1 = StorageSession.getRelacaoPorNome((String) jcbConjunto1.getSelectedItem());
+            Relacao rel2 = StorageSession.getRelacaoPorNome((String) jcbConjunto2.getSelectedItem());
+            obj1 = rel1.getDominioRelacao();
+            obj2 = rel2.getImagemRelacao();
+            nome1 = rel1.getNome();
+            nome2 = rel2.getNome();
+        }
+        String nome = StorageSession.raizDe(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());
     }//GEN-LAST:event_btnRaizActionPerformed
 
     private void btnMenorQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenorQueActionPerformed
-        Conjunto obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
-        Conjunto obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
-        String nome = StorageSession.menorQue(obj1, obj2);
+        Conjunto obj1 = new Conjunto();
+        Conjunto obj2 = new Conjunto();
+        String nome1 = "";
+        String nome2 = "";
+        boolean relacao = false;
+        if (StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem()) != null && StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem()) != null) {
+            obj1 = StorageSession.encontraConjunto((String) jcbConjunto1.getSelectedItem());
+            obj2 = StorageSession.encontraConjunto((String) jcbConjunto2.getSelectedItem());
+            nome1 = obj1.getNome();
+            nome2 = obj2.getNome();
+        } else {
+            Relacao rel1 = StorageSession.getRelacaoPorNome((String) jcbConjunto1.getSelectedItem());
+            Relacao rel2 = StorageSession.getRelacaoPorNome((String) jcbConjunto2.getSelectedItem());
+            obj1 = rel1.getDominioRelacao();
+            obj2 = rel2.getImagemRelacao();
+            nome1 = rel1.getNome();
+            nome2 = rel2.getNome();
+        }
+        String nome = StorageSession.menorQue(obj1, obj2, nome1, nome2, relacao);
         jcbConjunto1.addItem(nome);
         jcbConjunto2.addItem(nome);
         JOptionPane.showMessageDialog(null, StorageSession.getRelacaoPorNome(nome).getNotacao() + '\n' + StorageSession.getRelacaoPorNome(nome).getClassificacoes());

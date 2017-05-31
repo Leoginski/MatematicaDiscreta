@@ -18,6 +18,22 @@ public class Relacao {
     Conjunto imagem = new Conjunto();
     ArrayList<Conjunto> produto = new ArrayList<>();
     String notacao;
+
+    public ArrayList<Conjunto> getProduto() {
+        return produto;
+    }
+
+    public void setProduto(ArrayList<Conjunto> produto) {
+        this.produto = produto;
+    }
+
+    public String getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
     String classificacao = "";
 
     public Relacao() {
@@ -60,12 +76,17 @@ public class Relacao {
 
     public void criaNotacao() {
         String notacao = this.nome + " = {";
-        for (Conjunto obj : this.produto) {
-            ArrayList<Elemento> elementos = obj.getConjunto();
-            notacao += " <" + elementos.get(0).getValor() + "," + elementos.get(1).getValor() + ">,";
+        if (this.produto.isEmpty()) {
+            notacao += " <Ø>,";
+        } else {
+            for (Conjunto obj : this.produto) {
+                ArrayList<Elemento> elementos = obj.getConjunto();
+                notacao += " <" + elementos.get(0).getValor() + "," + elementos.get(1).getValor() + ">,";
+            }
         }
         notacao = notacao.substring(0, notacao.length() - 1);
         notacao += " }";
+
         this.notacao = notacao;
     }
 
@@ -148,32 +169,52 @@ public class Relacao {
     public String getClassificacoes() {
 
         this.classificacao = "";
+        if (this.produto.isEmpty()) {
+            this.classificacao += "[Conjunto Vazio]";
+        } else {
+            if (this.isFuncional()) {
+                this.classificacao += "[Funcional]";
+            }
+            if (this.isInjetora()) {
+                this.classificacao += "[Injetora]";
+            }
+            if (this.isTotal()) {
+                this.classificacao += "[Total]";
+            }
+            if (this.isSobrejetora()) {
+                this.classificacao += "[Sobrejetora]";
+            }
 
-        if (this.isFuncional()) {
-            this.classificacao += "[Funcional]";
-        }
-        if (this.isInjetora()) {
-            this.classificacao += "[Injetora]";
-        }
-        if (this.isTotal()) {
-            this.classificacao += "[Total]";
-        }
-        if (this.isSobrejetora()) {
-            this.classificacao += "[Sobrejetora]";
-        }
+            this.classificacao += "\n";
 
-        this.classificacao += "\n";
-
-        if (this.isTotal() && this.isInjetora()) {
-            this.classificacao += "[Monomorfismo]";
+            if (this.isTotal() && this.isInjetora()) {
+                this.classificacao += "[Monomorfismo]";
+            }
+            if (this.isFuncional() && this.isSobrejetora()) {
+                this.classificacao += "[Epiformismo]";
+            }
+            if (this.isFuncional() && this.isSobrejetora() && this.isTotal() && this.isInjetora()) {
+                this.classificacao += "\n logo: Isomorfismo";
+            }
         }
-        if (this.isFuncional() && this.isSobrejetora()) {
-            this.classificacao += "[Epiformismo]";
-        }
-        if (this.isFuncional() && this.isSobrejetora() && this.isTotal() && this.isInjetora()) {
-            this.classificacao += "\n logo: Isomorfismo";
-        }
-
         return this.classificacao;
+    }
+
+    public Conjunto getDominioRelacao() {
+        Conjunto dominio = new Conjunto();
+        for (Conjunto obj : this.produto) {
+            Elemento ele = obj.getConjunto().get(0);
+            dominio.addElemento(ele);
+        }
+        return dominio;
+    }
+
+    public Conjunto getImagemRelacao() {
+        Conjunto imagem = new Conjunto();
+        for (Conjunto obj : this.produto) {
+            Elemento ele = obj.getConjunto().get(1);
+            imagem.addElemento(ele);
+        }
+        return imagem;
     }
 }
